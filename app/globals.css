@@ -46,6 +46,14 @@
     @apply bg-clip-text text-transparent;
   }
 
+  .bg-color {
+    background-color: #253237;
+  }
+
+  .text-color {
+    color: #c2dfe3
+  }
+
   .bg-image {
     @apply bg-black-900 bg-light-rays bg-cover bg-no-repeat;
   }
@@ -185,7 +193,7 @@
 
   /* =====  SHADCN OVERRIDES */
   .shad-primary-btn {
-    @apply bg-green-500 text-white !important;
+    @apply bg-[#c2dfe3] hover:bg-[#9db4c0] text-[#253237] !important;
   }
 
   .shad-danger-btn {
@@ -197,19 +205,19 @@
   }
 
   .shad-input-label {
-    @apply text-14-medium text-dark-700 !important;
+    @apply text-14-medium text-[#abb8c4] !important;
   }
 
   .shad-input {
-    @apply bg-dark-400 placeholder:text-dark-600 border-dark-500 h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+    @apply placeholder:text-white text-sm border-[#abb8c4] h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
   }
 
   .shad-input-icon {
-    @apply bg-dark-400 placeholder:text-dark-600 border-dark-500 h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+    @apply bg-[#abb8c4] placeholder:text-dark-600 border-[#abb8c4] h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
   }
 
   .shad-textArea {
-    @apply bg-dark-400 placeholder:text-dark-600 border-dark-500 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+    @apply placeholder:text-dark-600 border-[#abb8c4] focus-visible:ring-0 focus-visible:ring-offset-0 !important;
   }
 
   .shad-combobox-item {
@@ -221,15 +229,15 @@
   }
 
   .shad-select-trigger {
-    @apply bg-dark-400 placeholder:text-dark-600 border-dark-500 h-11 focus:ring-0 focus:ring-offset-0 !important;
+    @apply placeholder:text-green-600 border-[#abb8c4] h-11 focus:ring-0 focus:ring-offset-0 !important;
   }
 
   .shad-select-content {
-    @apply bg-dark-400 border-dark-500 !important;
+    @apply bg-[#abb8c4] border-[#abb8c4] text-[#253237] !important;
   }
 
   .shad-dialog {
-    @apply bg-dark-400 border-dark-500 !important;
+    @apply bg-[#abb8c4] border-[#abb8c4] !important;
   }
 
   .shad-dialog button {
@@ -245,11 +253,11 @@
   }
 
   .shad-table-row-header {
-    @apply border-b border-dark-400 text-light-200 hover:bg-transparent !important;
+    @apply border-b border-[#abb8c4] text-light-200 hover:bg-transparent !important;
   }
 
   .shad-table-row {
-    @apply border-b border-dark-400 text-light-200 !important;
+    @apply border-b border-[#abb8c4] text-light-200 !important;
   }
 
   .shad-otp {
@@ -257,11 +265,11 @@
   }
 
   .shad-otp-slot {
-    @apply text-36-bold justify-center flex border border-dark-500 rounded-lg size-16 gap-4 !important;
+    @apply text-36-bold justify-center flex border border-[#abb8c4] rounded-lg size-16 gap-4 !important;
   }
 
   .shad-alert-dialog {
-    @apply space-y-5 bg-dark-400 border-dark-500 outline-none !important;
+    @apply space-y-5 bg-[#abb8c4] border-[#abb8c4] outline-none !important;
   }
 
   .shad-sheet-content button {
@@ -270,7 +278,7 @@
 
   /* =====  REACT PHONE NUMBER INPUT OVERRIDES */
   .input-phone {
-    @apply mt-2 h-11 rounded-md px-3 text-sm border bg-dark-400 placeholder:text-dark-600 border-dark-500 !important;
+    @apply mt-2 h-11 rounded-md px-3 text-sm border placeholder:text-dark-600 border-[#abb8c4] !important;
   }
 
   /* =====  REACT DATE PICKER OVERRIDES */
@@ -320,13 +328,13 @@
 }
 
 .react-datepicker__day--selected {
-  background-color: #24ae7c !important;
+  background-color: #363a3d !important;
   color: #ffffff !important;
   border-radius: 4px;
 }
 
 .react-datepicker__time-list-item--selected {
-  background-color: #24ae7c !important;
+  background-color: #363a3d !important;
 }
 
 .react-datepicker__time-container {
@@ -342,11 +350,11 @@
 .PhoneInputInput {
   outline: none;
   margin-left: 4px;
-  background: #1a1d21;
+  background: transparent;
   font-size: 14px;
   font-weight: 500;
 }
 
 .PhoneInputInput::placeholder {
-  color: #1a1d21;
+  color: #abb8c4;
 }

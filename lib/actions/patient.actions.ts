@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use server";
 import { ID, InputFile, Query } from "node-appwrite";
 import {
@@ -16,7 +17,7 @@ import { parseStringify } from "../utils";
 export const createUser = async (user: CreateUserParams) => {
     try {
         // Create new user -> https://appwrite.io/docs/references/1.5.x/server-nodejs/users#create
-        const newuser = await users.create(
+        const newUser = await users.create(
             ID.unique(),
             user.email,
             user.phone,
@@ -24,7 +25,7 @@ export const createUser = async (user: CreateUserParams) => {
             user.name
         );
 
-        return parseStringify(newuser);
+        return parseStringify(newUser);
     } catch (error: any) {
         // Check existing user
         if (error && error?.code === 409) {

@@ -52,9 +52,9 @@ export const PatientForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 space-y-6">
-        <section className="mb-12 space-y-4">
-          <h1 className="header">Hi there </h1>
-          <p className="text-dark-700">Get started with appointments.</p>
+        <section className="mb-6 space-y-4">
+          <h1 className="header">Register as a Patient </h1>
+          <p className="text-color">Get started with appointments.</p>
         </section>
 
         <CustomFormField
@@ -62,7 +62,7 @@ export const PatientForm = () => {
           control={form.control}
           name="name"
           label="Full name"
-          placeholder="John Doe"
+          placeholder="Enter full name"
           iconSrc="/assets/icons/user.svg"
           iconAlt="user"
         />
@@ -72,7 +72,7 @@ export const PatientForm = () => {
           control={form.control}
           name="email"
           label="Email"
-          placeholder="johndoe@gmail.com"
+          placeholder="Enter email address"
           iconSrc="/assets/icons/email.svg"
           iconAlt="email"
         />
@@ -82,10 +82,10 @@ export const PatientForm = () => {
           control={form.control}
           name="phone"
           label="Phone number"
-          placeholder="(555) 123-4567"
+          placeholder="(263) 778 191 278"
         />
 
-        <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
+        <SubmitButton isLoading={isLoading} className="shad-primary-btn w-full">Register Now</SubmitButton>
       </form>
     </Form>
   );
