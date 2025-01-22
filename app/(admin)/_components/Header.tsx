@@ -1,4 +1,4 @@
-import { Activity, CalendarCheck, ClipboardPlus, Hospital, Mail, Pill, Users } from 'lucide-react'
+import { Activity, CalendarCheck, ClipboardPlus, Hospital, Pill, Users } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
