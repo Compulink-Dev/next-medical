@@ -19,11 +19,11 @@ export const AppointmentClient = ({
             <section className="remove-scrollbar container my-auto">
                 <div className="sub-container max-w-[860px] flex-1 justify-between">
                     <Image
-                        src="/assets/icons/logo-full.svg"
+                        src="/assets/icons/healthcare_logo.png"
                         height={1000}
                         width={1000}
                         alt="CarePluse Logo"
-                        className="mb-12 h-10 w-fit"
+                        className="mb-2 h-20 w-fit"
                         priority
                     />
 
