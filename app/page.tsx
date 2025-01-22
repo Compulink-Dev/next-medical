@@ -40,11 +40,11 @@ const Home = () => {
       </section>
 
       <Image
-        src="/assets/images/onboarding-img.png"
+        src="/assets/images/doctor.jpg"
         height={1000}
         width={1000}
         alt="patient"
-        className="side-img max-w-[50%]"
+        className="side-img max-w-[50%] rounded-bl-full"
       />
     </div>
   );
