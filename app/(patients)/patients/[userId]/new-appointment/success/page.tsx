@@ -6,11 +6,15 @@ import { Doctors } from "@/constants";
 import { getAppointment } from "@/lib/actions/appointment.actions";
 import { formatDateTime } from "@/lib/utils";
 
-const RequestSuccess = async ({
-  searchParams,
-  params: { userId },
-}: SearchParamProps) => {
-  const appointmentId = (searchParams?.appointmentId as string) || "";
+type SearchParamProps = {
+  searchParams: Promise<{ [key: string]: string }>;
+  params: Promise<{ userId: string }>;
+};
+
+const RequestSuccess = async ({ searchParams, params }: SearchParamProps) => {
+  const { userId } = await params;
+  const searchParamsObj = await searchParams;
+  const appointmentId = (searchParamsObj?.appointmentId as string) || "";
   const appointment = await getAppointment(appointmentId);
 
   const doctor = Doctors.find(
@@ -73,7 +77,7 @@ const RequestSuccess = async ({
           </Link>
         </Button>
 
-        <p className="copyright">© 2024 CarePluse</p>
+        <p className="copyright"> 2025 Health Care</p>
       </div>
     </div>
   );
