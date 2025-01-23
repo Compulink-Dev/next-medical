@@ -7,7 +7,7 @@ function Reports() {
                 <section className="w-full space-y-4">
                     <h1 className="header">Reports </h1>
                     <p className="text-dark-700">
-                        Start the day with managing new appointments
+                        Start the day with managing reports
                     </p>
                 </section>
             </main>

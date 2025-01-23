@@ -7,7 +7,7 @@ function Clinics() {
                 <section className="w-full space-y-4">
                     <h1 className="header">Clinics </h1>
                     <p className="text-dark-700">
-                        Start the day with managing new appointments
+                        Start the day with managing our clinics
                     </p>
                 </section>
             </main>

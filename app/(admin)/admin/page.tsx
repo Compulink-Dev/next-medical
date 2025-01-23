@@ -7,7 +7,7 @@ const AdminPage = async () => {
 
       <main className="admin-main pt-6">
         <section className="w-full space-y-4">
-          <h1 className="header">Welcome 👋</h1>
+          <h1 className="header">Welcome</h1>
           <p className="text-dark-700">
             Admin
           </p>

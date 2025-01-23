@@ -1,3 +1,4 @@
+'use client'
 import { Activity, CalendarCheck, ClipboardPlus, Hospital, Pill, Users } from 'lucide-react'
 import {
     Tooltip,
@@ -8,8 +9,14 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { usePathname } from 'next/navigation'
 
 function Header() {
+
+    const pathname = usePathname()
+
+    const isActive = (path: string) => pathname === path;
+
     return (
         <div className='mx-auto flex max-w-7xl flex-col space-y-14 pt-8'>
             <header className="admin-header">
@@ -29,7 +36,7 @@ function Header() {
                         <Tooltip>
                             <TooltipTrigger>
                                 <Link href={'/admin/patients'} className="cursor-pointer">
-                                    <Users size={20} />
+                                    <Users className={isActive('/admin/patients') ? 'text-white' : 'text-slate-900'} size={20} />
                                 </Link>
                             </TooltipTrigger>
                             <TooltipContent>
@@ -42,7 +49,7 @@ function Header() {
                         <Tooltip>
                             <TooltipTrigger>
                                 <Link href={'/admin/appointments'} className="cursor-pointer">
-                                    <CalendarCheck size={20} />
+                                    <CalendarCheck className={isActive('/admin/appointments') ? 'text-white' : 'text-slate-900'} size={20} />
                                 </Link>
                             </TooltipTrigger>
                             <TooltipContent>
@@ -56,11 +63,11 @@ function Header() {
                         <Tooltip>
                             <TooltipTrigger>
                                 <Link href={'/admin/health'} className="cursor-pointer">
-                                    <Activity size={20} />
+                                    <Activity className={isActive('/admin/health') ? 'text-white' : 'text-slate-900'} size={20} />
                                 </Link>
                             </TooltipTrigger>
                             <TooltipContent>
-                                <p>Health Surveillance</p>
+                                <p className='text-white'>Health Surveillance</p>
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
@@ -70,11 +77,11 @@ function Header() {
                         <Tooltip>
                             <TooltipTrigger>
                                 <Link href={'/admin/medicines'} className="cursor-pointer">
-                                    <Pill size={20} />
+                                    <Pill className={isActive('/admin/medicines') ? 'text-white' : 'text-slate-900'} size={20} />
                                 </Link>
                             </TooltipTrigger>
                             <TooltipContent>
-                                <p>Medicines Management</p>
+                                <p className='text-white'>Medicines Management</p>
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
@@ -84,11 +91,11 @@ function Header() {
                         <Tooltip>
                             <TooltipTrigger>
                                 <Link href={'/admin/reports'} className="cursor-pointer">
-                                    <ClipboardPlus size={20} />
+                                    <ClipboardPlus className={isActive('/admin/reports') ? 'text-white' : 'text-slate-900'} size={20} />
                                 </Link>
                             </TooltipTrigger>
                             <TooltipContent>
-                                <p>Reports</p>
+                                <p className='text-white'>Reports</p>
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
@@ -98,11 +105,11 @@ function Header() {
                         <Tooltip>
                             <TooltipTrigger>
                                 <Link href={'/admin/clinics'} className="cursor-pointer">
-                                    <Hospital size={20} />
+                                    <Hospital className={isActive('/admin/clinics') ? 'text-white' : 'text-slate-900'} size={20} />
                                 </Link>
                             </TooltipTrigger>
                             <TooltipContent>
-                                <p>Clinics Synergy</p>
+                                <p className='text-white'>Clinics Synergy</p>
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
