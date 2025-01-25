@@ -12,12 +12,13 @@ declare interface CreateUserParams {
   name: string;
   email: string;
   phone: string;
+  password: string
 }
 declare interface User extends CreateUserParams {
   $id: string;
 }
 
-declare interface RegisterUserParams extends CreateUserParams {
+declare interface RegisterPatientParams extends CreateUserParams {
   userId: string;
   birthDate: Date;
   gender: Gender;
@@ -26,6 +27,27 @@ declare interface RegisterUserParams extends CreateUserParams {
   emergencyContactName: string;
   emergencyContactNumber: string;
   primaryPhysician: string;
+  insuranceProvider: string;
+  insurancePolicyNumber: string;
+  allergies: string | undefined;
+  currentMedication: string | undefined;
+  familyMedicalHistory: string | undefined;
+  pastMedicalHistory: string | undefined;
+  identificationType: string | undefined;
+  identificationNumber: string | undefined;
+  identificationDocument: FormData | undefined;
+  privacyConsent: boolean;
+}
+
+declare interface RegisterNurseParams extends CreateUserParams {
+  userId: string;
+  birthDate: Date;
+  gender: Gender;
+  address: string;
+  occupation: string;
+  emergencyContactName: string;
+  emergencyContactNumber: string;
+  primaryClinic: string;
   insuranceProvider: string;
   insurancePolicyNumber: string;
   allergies: string | undefined;

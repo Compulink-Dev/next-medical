@@ -7,12 +7,12 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Form } from "@/components/ui/form";
-import { createUser } from "@/lib/actions/patient.actions";
 import { UserFormValidation } from "@/lib/validation";
 
 import "react-phone-number-input/style.css";
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
+import { createUser } from "@/lib/actions/user.actions";
 
 export const PatientForm = () => {
   const router = useRouter();
@@ -24,6 +24,7 @@ export const PatientForm = () => {
       name: "",
       email: "",
       phone: "",
+      password: "",
     },
   });
 
@@ -35,6 +36,7 @@ export const PatientForm = () => {
         name: values.name,
         email: values.email,
         phone: values.phone,
+        password: values.password,
       };
 
       const newUser = await createUser(user);
@@ -83,6 +85,16 @@ export const PatientForm = () => {
           name="phone"
           label="Phone number"
           placeholder="(263) 778 191 278"
+        />
+
+        <CustomFormField
+          fieldType={FormFieldType.PASSWORD}
+          control={form.control}
+          name="password"
+          label="Password"
+          placeholder="Enter password"
+          iconSrc="/assets/icons/user.svg"
+          iconAlt="user"
         />
 
         <SubmitButton isLoading={isLoading} className="shad-primary-btn w-full">Register Now</SubmitButton>

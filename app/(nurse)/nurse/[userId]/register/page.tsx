@@ -1,8 +1,7 @@
 import Image from "next/image";
 import { redirect } from "next/navigation";
-
-import RegisterForm from "@/components/forms/RegisterForm";
-import { getPatient, getUser } from "@/lib/actions/user.actions";
+import { getNurse, getUser } from "@/lib/actions/user.actions";
+import RegisterForm from "../../_components/RegisterForm";
 
 type SearchParamProps = {
   params: Promise<{ userId: string }>;
@@ -11,9 +10,12 @@ type SearchParamProps = {
 const Register = async ({ params }: SearchParamProps) => {
   const { userId } = await params;
   const user = await getUser(userId);
-  const patient = await getPatient(userId);
+  const nurse = await getNurse(userId);
 
-  if (patient) redirect(`/patients/${userId}/new-appointment`);
+  console.log('nurse', nurse);
+
+
+  if (nurse) redirect(`/dashboard`);
 
   return (
     <div className="flex h-screen max-h-screen">

@@ -18,22 +18,22 @@ function Header() {
                 </Link>
 
                 <div className="flex gap-10">
-                    <Link href={'/admin/patients'} className="cursor-pointer">
+                    <Link href={'/dashboard/patients'} className="cursor-pointer">
                         <Users size={20} />
                     </Link>
-                    <Link href={'/admin/appointments'} className="cursor-pointer">
+                    <Link href={'/dashboard/appointments'} className="cursor-pointer">
                         <CalendarCheck size={20} />
                     </Link>
-                    <Link href={'/admin/health'} className="cursor-pointer">
+                    <Link href={'/dashboard/health'} className="cursor-pointer">
                         <Activity size={20} />
                     </Link>
-                    <Link href={'/admin/medicines'} className="cursor-pointer">
+                    <Link href={'/dashboard/medicines'} className="cursor-pointer">
                         <Pill size={20} />
                     </Link>
-                    <Link href={'/admin/reports'} className="cursor-pointer">
+                    <Link href={'/dashboard/reports'} className="cursor-pointer">
                         <ClipboardPlus size={20} />
                     </Link>
-                    <Link href={'/admin/clinics'} className="cursor-pointer">
+                    <Link href={'/dashboard/clinics'} className="cursor-pointer">
                         <Hospital size={20} />
                     </Link>
                 </div>

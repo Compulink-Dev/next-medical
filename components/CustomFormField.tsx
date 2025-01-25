@@ -25,6 +25,7 @@ export enum FormFieldType {
   DATE_PICKER = "datePicker",
   SELECT = "select",
   SKELETON = "skeleton",
+  PASSWORD = 'password',
 }
 
 interface CustomProps {
@@ -58,6 +59,28 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
           )}
           <FormControl>
             <Input
+              placeholder={props.placeholder}
+              {...field}
+              className="shad-input border-0"
+            />
+          </FormControl>
+        </div>
+      );
+    case FormFieldType.PASSWORD:
+      return (
+        <div className="flex rounded-md border border-[#abb8c4] bg-color">
+          {props.iconSrc && (
+            <Image
+              src={props.iconSrc}
+              height={24}
+              width={24}
+              alt={props.iconAlt || "icon"}
+              className="ml-2"
+            />
+          )}
+          <FormControl>
+            <Input
+              type="password"
               placeholder={props.placeholder}
               {...field}
               className="shad-input border-0"

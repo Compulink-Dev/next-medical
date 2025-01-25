@@ -4,6 +4,7 @@ export const PatientFormDefaultValues = {
   firstName: "",
   lastName: "",
   email: "",
+  password: "",
   phone: "",
   birthDate: new Date(Date.now()),
   gender: "Male" as Gender,
@@ -12,6 +13,32 @@ export const PatientFormDefaultValues = {
   emergencyContactName: "",
   emergencyContactNumber: "",
   primaryPhysician: "",
+  insuranceProvider: "",
+  insurancePolicyNumber: "",
+  allergies: "",
+  currentMedication: "",
+  familyMedicalHistory: "",
+  pastMedicalHistory: "",
+  identificationType: "Birth Certificate",
+  identificationNumber: "",
+  identificationDocument: [],
+  treatmentConsent: false,
+  disclosureConsent: false,
+  privacyConsent: false,
+};
+
+export const NurseFormDefaultValues = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  birthDate: new Date(Date.now()),
+  gender: "Male" as Gender,
+  address: "",
+  occupation: "Nurse",
+  emergencyContactName: "",
+  emergencyContactNumber: "",
+  primaryClinic: "",
   insuranceProvider: "",
   insurancePolicyNumber: "",
   allergies: "",
@@ -49,6 +76,21 @@ export const Doctors = [
   {
     image: "/assets/images/dr-livingston.png",
     name: "David Parerenyatwa",
+  },
+];
+
+export const Clinics = [
+  {
+    image: "/assets/images/dr-green.png",
+    name: "Mpilo Central Hospital",
+  },
+  {
+    image: "/assets/images/dr-cameron.png",
+    name: "Baines Intercare",
+  },
+  {
+    image: "/assets/images/dr-livingston.png",
+    name: "Parerenyatwa Hospital",
   },
 ];
 
