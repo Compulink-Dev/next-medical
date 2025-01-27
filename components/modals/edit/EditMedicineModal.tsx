@@ -119,7 +119,7 @@ function EditMedicineModal({ children, defaultValues, medicineId }: EditMedicine
                                 iconSrc="/assets/icons/user.svg"
                                 iconAlt="description"
                             />
-                            <SubmitButton isLoading={isLoading}>Add Medicine</SubmitButton>
+                            <SubmitButton isLoading={isLoading}>Update Medicine</SubmitButton>
                         </form>
                     </Form>
                 </DialogHeader>
