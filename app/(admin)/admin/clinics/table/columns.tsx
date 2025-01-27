@@ -1,13 +1,11 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { Patient } from "@/types/appwrite.types";
-import { Button } from "@/components/ui/button";
-import { Pen, Trash } from "lucide-react";
+import { Clinic } from "@/types/appwrite.types";
 import ActionButtons from "@/app/(admin)/_components/ActionButtons";
 
 
-export const columns: ColumnDef<Patient>[] = [
+export const columns: ColumnDef<Clinic>[] = [
   {
     header: "#",
     meta: { width: "50px" },
