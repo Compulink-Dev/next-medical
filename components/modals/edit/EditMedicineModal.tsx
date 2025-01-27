@@ -79,7 +79,7 @@ function EditMedicineModal({ children, defaultValues, medicineId }: EditMedicine
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent className="max-h-[90vh] overflow-y-auto p-4">
                 <DialogHeader>
-                    <DialogTitle>Add a new Medicine</DialogTitle>
+                    <DialogTitle>Add new Medicine</DialogTitle>
 
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 space-y-6">
