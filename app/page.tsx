@@ -15,27 +15,28 @@ const Home = () => {
       {isAdmin && <PasskeyModal />}
 
       <section className="remove-scrollbar container  my-auto">
-        <div className="sub-container max-w-[496px]">
-          <Image
-            src="/assets/icons/healthcare_logo.png"
-            height={1000}
-            width={1000}
-            alt="patient"
-            className="mb-2 h-20 w-fit"
-          />
+        <p className="">Welcome</p>
+        {/* <Link href={isAdmin ? '/admin/patients' : '/dashboard/patients'}>
+          <Button>Patients</Button>
+        </Link> */}
+        <div className="flex gap-4">
+          <Link href={'/login'}>
+            <Button>Login</Button>
+          </Link>
+          <Link href={'/register'}>
+            <Button>Register</Button>
+          </Link>
+        </div>
 
-          <PatientForm />
-
-          <div className="text-14-regular mt-20 flex justify-between items-center">
-            <p className="justify-items-end text-600 text-color xl:text-left">
-              © 2025 Health Care
-            </p>
-            <Button className="shad-primary-btn">
-              <Link href="/?admin=true" className="">
-                Admin
-              </Link>
-            </Button>
-          </div>
+        <div className="text-14-regular mt-12 flex justify-between items-center">
+          <p className="justify-items-end text-600 text-color xl:text-left">
+            © 2025 Health Care
+          </p>
+          <Button className="shad-primary-btn">
+            <Link href="/?admin=true" className="">
+              Admin
+            </Link>
+          </Button>
         </div>
       </section>
 

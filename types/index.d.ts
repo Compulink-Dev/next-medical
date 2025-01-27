@@ -26,6 +26,13 @@ declare interface CreateClinicParams {
   address: string
 }
 
+declare interface CreateMedicineParams {
+  name: string;
+  description: string;
+  dosage: string;
+  stock: string
+}
+
 declare interface RegisterPatientParams extends CreateUserParams {
   userId: string;
   birthDate: Date;

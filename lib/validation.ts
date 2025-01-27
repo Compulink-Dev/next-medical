@@ -167,6 +167,16 @@ export const UserClinicValidation = z.object({
     .refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
 });
 
+export const UserMedicineValidation = z.object({
+  name: z
+    .string()
+    .min(2, "Name must be at least 2 characters")
+    .max(50, "Name must be at most 50 characters"),
+  stock: z.string().min(1, "Invalid medicine stock quantity").optional(),
+  description: z.string().min(2, "Invalid medicine description").optional(),
+  dosage: z.string().min(2, "Invalid medicine dosage").optional(),
+});
+
 export const CreateAppointmentSchema = z.object({
   primaryPhysician: z.string().min(2, "Select at least one doctor"),
   schedule: z.coerce.date(),

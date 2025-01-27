@@ -1,4 +1,5 @@
 'use client';
+import { Button } from "@/components/ui/button";
 // login/page.tsx
 import { LoginForm } from "../_components/LoginForm";
 import Image from "next/image";
@@ -31,8 +32,12 @@ const LoginPage = () => {
                         <p className="justify-items-end text-600 text-color xl:text-left">
                             © 2025 Health Care
                         </p>
+                        <Button className="shad-primary-btn">
+                            <Link href="/?admin=true" className="">
+                                Admin
+                            </Link>
+                        </Button>
                     </div>
-
                 </div>
             </section>
 

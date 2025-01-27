@@ -2,11 +2,13 @@ import React from "react";
 import { getRecentClinicList } from "@/lib/actions/clinic.actions";
 import { StatCard } from "./_components/StatCard";
 import { getRecentNursesList, getRecentPatientsList } from "@/lib/actions/user.actions";
+import { getRecentMedicineList } from "@/lib/actions/medicine.action";
 
 const AdminPage = async () => {
   const clinics = await getRecentClinicList();
   const patients = await getRecentPatientsList()
   const nurses = await getRecentNursesList()
+  const medicines = await getRecentMedicineList()
 
   console.log('Nurses:', nurses);
 
@@ -37,7 +39,7 @@ const AdminPage = async () => {
               href="/admin/nurses"
             />
             <StatCard
-              count={clinics?.totalCount || 0} // Fallback to 0 if clinics is undefined
+              count={medicines?.totalCount || 0} // Fallback to 0 if clinics is undefined
               label="Medicines"
               icon="/assets/icons/appointments.svg"
               href="/admin/medicines"

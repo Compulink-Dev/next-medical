@@ -62,7 +62,7 @@ export const LoginForm = () => {
                     iconSrc="/assets/icons/user.svg"
                     iconAlt="Password"
                 />
-                <SubmitButton isLoading={isLoading} className="w-full bg-blue-600 text-white">
+                <SubmitButton isLoading={isLoading} className="shad-primary-btn w-full">
                     Login
                 </SubmitButton>
                 {form.formState.errors.email && (

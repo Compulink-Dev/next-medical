@@ -1,0 +1,89 @@
+'use server'
+import { ID, Query } from "node-appwrite";
+import {
+    MEDICINE_COLLECTION_ID,
+    DATABASE_ID,
+    databases
+} from "../appwrite.config";
+import { revalidatePath } from "next/cache";
+import { parseStringify } from "../utils";
+
+
+// CREATE MEDICINE
+export const createMedicine = async (
+    clinic: CreateMedicineParams
+) => {
+    console.log('Database ID:', DATABASE_ID);
+
+    try {
+        const newMedicine = await databases.createDocument(
+            DATABASE_ID!,
+            MEDICINE_COLLECTION_ID!,
+            ID.unique(),
+            clinic
+        );
+
+        revalidatePath("/admin");
+        return parseStringify(newMedicine);
+    } catch (error) {
+        console.error("An error occurred while creating a new medicine:", error);
+    }
+};
+
+// GET MEDICINE
+export const getMedicine = async (userId: string) => {
+    try {
+        const medicines = await databases.listDocuments(
+            DATABASE_ID!,
+            MEDICINE_COLLECTION_ID!,
+            [Query.equal("userId", [userId])]
+        );
+
+        return parseStringify(medicines.documents[0]);
+    } catch (error) {
+        console.error(
+            "An error occurred while retrieving the medicine details:",
+            error
+        );
+    }
+};
+
+// GET ALL MEDICINE
+export const getAllMedicines = async () => {
+    try {
+        const medicines = await databases.listDocuments(
+            DATABASE_ID!,
+            MEDICINE_COLLECTION_ID!,
+        );
+
+        return medicines.documents.map(document => parseStringify(document));
+    } catch (error) {
+        console.error(
+            "An error occurred while retrieving the medicine details:",
+            error
+        );
+    }
+};
+
+//  GET RECENT MEDICINE
+export const getRecentMedicineList = async () => {
+    try {
+        const medicines = await databases.listDocuments(
+            DATABASE_ID!,
+            MEDICINE_COLLECTION_ID!,
+            [Query.orderDesc("$createdAt")]
+        );
+
+        const data = {
+            totalCount: medicines.total,
+            documents: medicines.documents,
+        };
+
+        return data;
+    } catch (error) {
+        console.error(
+            "An error occurred while retrieving the recent medicines:",
+            error
+        );
+    }
+};

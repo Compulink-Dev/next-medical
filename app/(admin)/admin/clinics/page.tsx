@@ -1,4 +1,5 @@
-import ClinicModal from '@/components/forms/ClinicModal'
+
+import ClinicModal from '@/components/modals/ClinicModal';
 import { getAllClinics } from '@/lib/actions/clinic.actions'
 import { Plus } from 'lucide-react'
 

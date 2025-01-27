@@ -38,7 +38,7 @@ const Dashboard = () => {
 
 
         // Redirect to login if not authenticated
-        router.push("/entry");
+        router.push("/login");
       } finally {
         setLoading(false);
       }
