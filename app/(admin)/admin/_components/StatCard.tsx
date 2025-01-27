@@ -12,7 +12,7 @@ type StatCardProps = {
 export const StatCard = ({ count = 0, label, icon, href }: StatCardProps) => {
     return (
         <Link href={href}
-            className={clsx("stat-card",)}
+            className={clsx("stat-card bg-pending",)}
         >
             <div className="flex items-center gap-4">
                 <Image
