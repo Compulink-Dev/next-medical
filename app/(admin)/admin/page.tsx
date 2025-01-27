@@ -23,25 +23,25 @@ const AdminPage = async () => {
             <StatCard
               count={clinics?.totalCount || 0} // Fallback to 0 if clinics is undefined
               label="Clinics"
-              icon="/assets/icons/appointments.svg"
+              icon="/assets/icons/clinic.svg"
               href="/admin/clinics"
             />
             <StatCard
               count={patients?.totalCount || 0} // Fallback to 0 if clinics is undefined
               label="Patients"
-              icon="/assets/icons/appointments.svg"
+              icon="/assets/icons/patient.svg"
               href="/admin/patients"
             />
             <StatCard
               count={nurses?.totalCount || 0} // Fallback to 0 if clinics is undefined
               label="Nurses"
-              icon="/assets/icons/appointments.svg"
+              icon="/assets/icons/nurse.svg"
               href="/admin/nurses"
             />
             <StatCard
               count={medicines?.totalCount || 0} // Fallback to 0 if clinics is undefined
               label="Medicines"
-              icon="/assets/icons/appointments.svg"
+              icon="/assets/icons/medicine.svg"
               href="/admin/medicines"
             />
           </div>
