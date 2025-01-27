@@ -67,3 +67,10 @@ export interface Clinic extends Models.Document {
   address: string | undefined;
   phone: string | undefined;
 }
+
+export interface Medicine extends Models.Document {
+  name: string;
+  dosage: string;
+  stock: string | undefined;
+  description: string | undefined;
+}

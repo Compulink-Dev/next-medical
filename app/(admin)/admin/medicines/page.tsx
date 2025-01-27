@@ -1,7 +1,9 @@
 import MedicineModal from '@/components/modals/MedicineModal'
+import { DataTable } from '@/components/table/DataTable';
 import { getAllMedicines } from '@/lib/actions/medicine.action';
 import { Plus } from 'lucide-react'
 import React from 'react'
+import { columns } from './table/columns';
 
 async function Medicines() {
 
@@ -26,20 +28,7 @@ async function Medicines() {
                     </MedicineModal>
                 </section>
 
-                <section className="w-full">
-                    {medicines && medicines.length > 0 ? (
-                        <div className="space-y-4">
-                            {medicines.map((medicine, index) => (
-                                <div key={index} className="bg-slate-900 p-4 rounded shadow-sm">
-                                    <h2 className="text-lg font-bold">{medicine.name}</h2>
-                                    <p className="text-dark-700 text-sm">{medicine.dosgae}</p>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <p>No medicines found.</p>
-                    )}
-                </section>
+                <DataTable columns={columns} data={medicines!} />
             </main>
         </div>
     )

@@ -12,6 +12,10 @@
     border-radius: 0px;
   }
 
+  .no-scrollbar {
+    overflow: hidden;
+  }
+
   .remove-scrollbar::-webkit-scrollbar-track {
     background: transparent;
   }
@@ -269,7 +273,7 @@
   }
 
   .shad-alert-dialog {
-    @apply space-y-5 bg-[#abb8c4] border-[#abb8c4] outline-none !important;
+    @apply space-y-5 bg-[#1a1d21] border-[#abb8c4] outline-none !important;
   }
 
   .shad-sheet-content button {

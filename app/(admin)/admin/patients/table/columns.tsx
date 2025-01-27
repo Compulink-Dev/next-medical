@@ -2,11 +2,14 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Patient } from "@/types/appwrite.types";
+import { Button } from "@/components/ui/button";
+import { Pen, Trash } from "lucide-react";
 
 
 export const columns: ColumnDef<Patient>[] = [
   {
     header: "#",
+    meta: { width: "50px" },
     cell: ({ row }) => {
       return <p className="text-14-medium ">{row.index + 1}</p>;
     },
@@ -14,6 +17,7 @@ export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "name",
     header: "Name",
+    meta: { width: "450px" },
     cell: ({ row }) => {
       const patient = row.original;
       return <p className="text-14-medium ">{patient.name}</p>;
@@ -22,6 +26,7 @@ export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "email",
     header: "Email",
+    meta: { width: "450px" },
     cell: ({ row }) => {
       const patient = row.original;
       return <p className="text-14-medium ">{patient.email}</p>;
@@ -30,22 +35,38 @@ export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "phone",
     header: "Phone",
+    meta: { width: "450px" },
+
     cell: ({ row }) => {
       const patient = row.original;
       return <p className="text-14-medium ">{patient.phone}</p>;
     },
   },
+  // {
+  //   accessorKey: "birthDate",
+  //   header: "Birth",
+  //   meta: { width: "450px" },
+
+  //   cell: ({ row }) => {
+  //     const patient = row.original;
+  //     return <p className="text-14-medium ">{patient.}</p>;
+  //   },
+  // },
   {
-    accessorKey: "birthDate",
-    header: "Birth",
+    accessorKey: "primaryClinic",
+    header: "Clinic",
+    meta: { width: "450px" },
+
     cell: ({ row }) => {
       const patient = row.original;
-      return <p className="text-14-medium ">{patient.email}</p>;
+      return <p className="text-14-medium ">{patient.primaryClinic}</p>;
     },
   },
   {
     accessorKey: "gender",
     header: "Gender",
+    meta: { width: "450px" },
+
     cell: ({ row }) => {
       const patient = row.original;
       return <p className="text-14-medium ">{patient.gender}</p>;
@@ -54,6 +75,8 @@ export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "address",
     header: "Address",
+    meta: { width: "450px" },
+
     cell: ({ row }) => {
       const patient = row.original;
       return <p className="text-14-medium ">{patient.address}</p>;
@@ -62,6 +85,8 @@ export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "occupation",
     header: "Occupation",
+    meta: { width: "450px" },
+
     cell: ({ row }) => {
       const patient = row.original;
       return <p className="text-14-medium ">{patient.occupation}</p>;
@@ -70,14 +95,18 @@ export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "emergencyName",
     header: "Emergency Name",
+    meta: { width: "450px" },
+
     cell: ({ row }) => {
       const patient = row.original;
-      return <p className="text-14-medium ">{patient.emergencyName}</p>;
+      return <p className="text-14-medium ">{patient.emergencyContactName}</p>;
     },
   },
   {
     accessorKey: "emergencyContactNumber",
     header: "Emergency Contact Number",
+    meta: { width: "450px" },
+
     cell: ({ row }) => {
       const patient = row.original;
       return <p className="text-14-medium ">{patient.emergencyContactNumber}</p>;
@@ -86,6 +115,8 @@ export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "insuranceProvider",
     header: "Insurance Provider",
+    meta: { width: "450px" },
+
     cell: ({ row }) => {
       const patient = row.original;
       return <p className="text-14-medium ">{patient.insuranceProvider}</p>;
@@ -94,6 +125,8 @@ export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "currentMedication",
     header: "Current Medication",
+    meta: { width: "450px" },
+
     cell: ({ row }) => {
       const patient = row.original;
       return <p className="text-14-medium ">{patient.currentMedication}</p>;
@@ -110,23 +143,14 @@ export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "identificationType",
     header: "Identification Type",
+    meta: { width: "450px" },
+
     cell: ({ row }) => {
       const patient = row.original;
       return <p className="text-14-medium ">{patient.identificationType}</p>;
     },
   },
-  // {
-  //   accessorKey: "schedule",
-  //   header: "Appointment",
-  //   cell: ({ row }) => {
-  //     const appointment = row.original;
-  //     return (
-  //       <p className="text-14-regular min-w-[100px]">
-  //         {formatDateTime(appointment.schedule).dateTime}
-  //       </p>
-  //     );
-  //   },
-  // },
+
   {
     id: "actions",
     header: () => <div className="pl-4">Actions</div>,
@@ -134,23 +158,15 @@ export const columns: ColumnDef<Patient>[] = [
 
 
       return (
-        <div className="flex gap-1">
-          {/* <AppointmentModal
-            patientId={appointment.patient.$id}
-            userId={appointment.userId}
-            appointment={appointment}
-            type="schedule"
-            title="Schedule Appointment"
-            description="Please confirm the following details to schedule."
-          />
-          <AppointmentModal
-            patientId={appointment.patient.$id}
-            userId={appointment.userId}
-            appointment={appointment}
-            type="cancel"
-            title="Cancel Appointment"
-            description="Are you sure you want to cancel your appointment?"
-          /> */}
+        <div className="flex gap-4 items-center ">
+          <Button className="bg-slate-400 hover:bg-slate-500 text-slate-950">
+            <Pen size={10} />
+            <p className="text-xs">Edit</p>
+          </Button>
+          <Button variant={'destructive'} className="bg-red-700 hover:bg-red-500">
+            <Trash size={10} />
+            <p className="text-xs">Delete</p>
+          </Button>
         </div>
       );
     },

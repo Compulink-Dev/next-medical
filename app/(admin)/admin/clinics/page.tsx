@@ -4,6 +4,8 @@ import { getAllClinics } from '@/lib/actions/clinic.actions'
 import { Plus } from 'lucide-react'
 
 import React from 'react'
+import { columns } from './table/columns';
+import { DataTable } from '@/components/table/DataTable';
 
 async function Clinics() {
 
@@ -39,20 +41,7 @@ async function Clinics() {
 
                 </section>
 
-                <section className="w-full">
-                    {clinics && clinics.length > 0 ? (
-                        <div className="space-y-4">
-                            {clinics.map((clinic, index) => (
-                                <div key={index} className="bg-slate-900 p-4 rounded shadow-sm">
-                                    <h2 className="text-lg font-bold">{clinic.name}</h2>
-                                    <p className="text-dark-700 text-sm">{clinic.address}</p>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <p>No clinics found.</p>
-                    )}
-                </section>
+                <DataTable columns={columns} data={clinics!} />
             </main>
         </div>
     )
