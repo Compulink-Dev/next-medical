@@ -6,14 +6,12 @@ import SubmitButton from '@/components/SubmitButton';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from 'next/navigation';
 import { UserClinicValidation } from '@/lib/validation';
 import { createClinic } from '@/lib/actions/clinic.actions';
 import { revalidatePath } from 'next/cache';
 
-function page() {
+function NewNurse() {
 
-    const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
 
     const form = useForm<z.infer<typeof UserClinicValidation>>({
@@ -95,4 +93,4 @@ function page() {
     )
 }
 
-export default page
+export default NewNurse

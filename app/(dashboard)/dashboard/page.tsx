@@ -18,6 +18,9 @@ const Dashboard = () => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
+
+  console.log(loading);
+
   useEffect(() => {
     async function fetchUserSession() {
       try {

@@ -130,8 +130,8 @@ export const columns: ColumnDef<Patient>[] = [
   {
     id: "actions",
     header: () => <div className="pl-4">Actions</div>,
-    cell: ({ row }) => {
-      const appointment = row.original;
+    cell: () => {
+
 
       return (
         <div className="flex gap-1">

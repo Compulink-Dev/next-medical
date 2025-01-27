@@ -10,7 +10,7 @@ import { UserClinicValidation } from '@/lib/validation';
 import { createClinic } from '@/lib/actions/clinic.actions';
 import { revalidatePath } from 'next/cache';
 
-function page() {
+function NewClinic() {
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -93,4 +93,4 @@ function page() {
     )
 }
 
-export default page
+export default NewClinic
