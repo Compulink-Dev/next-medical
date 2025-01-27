@@ -128,7 +128,7 @@ export const columns: ColumnDef<Patient>[] = [
 
     cell: ({ row }) => {
       const patient = row.original;
-      return <p className="text-14-medium ">{patient.currentMedication}</p>;
+      return <p className="text-14-medium ">{patient.currentMedication || 'No current medication'}</p>;
     },
   },
   {
@@ -136,7 +136,7 @@ export const columns: ColumnDef<Patient>[] = [
     header: "Past Medical History",
     cell: ({ row }) => {
       const patient = row.original;
-      return <p className="text-14-medium ">{patient.pastMedicalHistory}</p>;
+      return <p className="text-14-medium ">{patient.pastMedicalHistory || 'No medical history'}</p>;
     },
   },
   {
