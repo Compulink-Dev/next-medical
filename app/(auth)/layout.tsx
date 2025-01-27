@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+
 export const metadata: Metadata = {
   title: "Health Care Auth",
   description:

@@ -27,12 +27,14 @@ const Dashboard = () => {
         const user: User = await account.get();
         console.log("Fetched user:", user);
 
-        setUser(user); // Set user state
+        // Set user in state
+        setUser(user);
       } catch (error: any) {
         console.error("Failed to fetch user session:", error);
         setError("You are not authenticated. Redirecting to login...");
 
-        // Redirect to login
+
+        // Redirect to login if not authenticated
         router.push("/entry");
       } finally {
         setLoading(false);
@@ -42,7 +44,7 @@ const Dashboard = () => {
     fetchUserSession();
   }, [router]);
 
-  if (loading) return <p>Loading...</p>;
+  if (!user) return <p>Loading...</p>;
 
   return (
     <div>

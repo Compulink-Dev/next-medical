@@ -55,7 +55,7 @@ export const UserForm = () => {
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 space-y-6">
                 <section className="mb-6 space-y-4">
-                    <h1 className="header">Login to your account</h1>
+                    <h1 className="header">Register your account</h1>
                     <p className="text-color">Get started now, access your dashboard.</p>
                 </section>
 

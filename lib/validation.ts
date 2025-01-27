@@ -14,6 +14,14 @@ export const UserFormValidation = z.object({
     .refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
 });
 
+export const LoginFormValidation = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string()
+    .min(8, "Password must be at least 8 characters and should not be one of the commonly used password")
+    .max(256, "Password must be at most 256 characters"),
+});
+
+
 export const PatientFormValidation = z.object({
   name: z
     .string()
@@ -146,6 +154,18 @@ export const NurseFormValidation = z.object({
   password: z.string().optional()
 });
 
+
+export const UserClinicValidation = z.object({
+  name: z
+    .string()
+    .min(2, "Name must be at least 2 characters")
+    .max(50, "Name must be at most 50 characters"),
+  email: z.string().email("Invalid email address"),
+  address: z.string().min(2, "Invalid clinic address"),
+  phone: z
+    .string()
+    .refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
+});
 
 export const CreateAppointmentSchema = z.object({
   primaryPhysician: z.string().min(2, "Select at least one doctor"),

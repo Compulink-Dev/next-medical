@@ -59,3 +59,11 @@ export interface Appointment extends Models.Document {
   userId: string;
   cancellationReason: string | null;
 }
+
+
+export interface Clinic extends Models.Document {
+  name: string;
+  email: string;
+  address: string | undefined;
+  phone: string | undefined;
+}

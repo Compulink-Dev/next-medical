@@ -26,7 +26,6 @@ export const AppointmentClient = ({
                         className="mb-2 h-20 w-fit"
                         priority
                     />
-
                     {hasError ? (
                         <p className="text-center text-red-500">
                             Failed to load patient data. Please try again later.

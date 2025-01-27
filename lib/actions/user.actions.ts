@@ -124,6 +124,47 @@ export const getPatient = async (userId: string) => {
     }
 };
 
+// GET ALL NURSE
+export const getAllPatients = async () => {
+    try {
+        const patients = await databases.listDocuments(
+            DATABASE_ID!,
+            PATIENT_COLLECTION_ID!
+        );
+
+        return patients.documents.map(document => parseStringify(document));
+    } catch (error) {
+        console.error(
+            "An error occurred while retrieving the patient details:",
+            error
+        );
+    }
+};
+
+
+// GET ALL RECENT PATIENTS
+export const getRecentPatientsList = async () => {
+    try {
+        const patients = await databases.listDocuments(
+            DATABASE_ID!,
+            PATIENT_COLLECTION_ID!,
+            [Query.orderDesc("$createdAt")]
+        );
+
+        const data = {
+            totalCount: patients.total,
+            documents: patients.documents,
+        };
+
+        return data;
+    } catch (error) {
+        console.error(
+            "An error occurred while retrieving the recent patients:",
+            error
+        );
+    }
+};
+
 
 // REGISTER NURSE
 export const registerNurse = async ({
@@ -180,4 +221,45 @@ export const getNurse = async (userId: string) => {
             error
         );
     }
+}
+
+// GET ALL NURSE
+export const getAllNurses = async () => {
+    try {
+        const nurses = await databases.listDocuments(
+            DATABASE_ID!,
+            NURSE_COLLECTION_ID!
+        );
+
+        return nurses.documents.map(document => parseStringify(document));
+    } catch (error) {
+        console.error(
+            "An error occurred while retrieving the nurse details:",
+            error
+        );
+    }
 };
+
+// GET ALL RECENT NURSE
+export const getRecentNursesList = async () => {
+    try {
+        const nurses = await databases.listDocuments(
+            DATABASE_ID!,
+            NURSE_COLLECTION_ID!,
+            [Query.orderDesc("$createdAt")]
+        );
+
+        const data = {
+            totalCount: nurses.total,
+            documents: nurses.documents,
+        };
+
+        return data;
+    } catch (error) {
+        console.error(
+            "An error occurred while retrieving the recent nurses:",
+            error
+        );
+    }
+};
+

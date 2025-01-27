@@ -18,6 +18,14 @@ declare interface User extends CreateUserParams {
   $id: string;
 }
 
+
+declare interface CreateClinicParams {
+  name: string;
+  email: string;
+  phone: string;
+  address: string
+}
+
 declare interface RegisterPatientParams extends CreateUserParams {
   userId: string;
   birthDate: Date;

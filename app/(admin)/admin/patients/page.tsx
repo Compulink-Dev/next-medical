@@ -1,6 +1,14 @@
+import { DataTable } from '@/components/table/DataTable'
+import { getAllPatients } from '@/lib/actions/user.actions'
 import React from 'react'
+import { columns } from './table/columns'
 
-function Patients() {
+async function Patients() {
+
+    const patients = await getAllPatients()
+
+    console.log('Patients:', patients);
+
     return (
         <div className='mx-auto flex max-w-7xl flex-col space-y-14 mt-6'>
             <main className="admin-main pt-6">
@@ -10,6 +18,7 @@ function Patients() {
                         Start the day with managing patients
                     </p>
                 </section>
+                <DataTable columns={columns} data={patients!} />
             </main>
         </div>
     )

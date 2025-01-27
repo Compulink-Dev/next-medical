@@ -11,10 +11,23 @@ export const {
     CLINIC_COLLECTION_ID,
     MEDICINE_COLLECTION_ID,
     APPOINTMENT_COLLECTION_ID,
-    USER_COLLECTION_ID,
     NEXT_PUBLIC_BUCKET_ID: BUCKET_ID,
 } = process.env
 
+console.log("Environment Variables:");
+console.log({
+    PROJECT_ID,
+    ENDPOINT,
+    API_KEY,
+    DATABASE_ID,
+    PATIENT_COLLECTION_ID,
+    DOCTOR_COLLECTION_ID,
+    NURSE_COLLECTION_ID,
+    CLINIC_COLLECTION_ID,
+    MEDICINE_COLLECTION_ID,
+    APPOINTMENT_COLLECTION_ID,
+    BUCKET_ID,
+});
 
 
 console.log("Appwrite Endpoint:", process.env.NEXT_PUBLIC_ENDPOINT || "Not defined");

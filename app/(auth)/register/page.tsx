@@ -5,9 +5,9 @@ import { useSearchParams } from 'next/navigation';
 
 import { PasskeyModal } from "@/components/PasskeyModal";
 import { Button } from "@/components/ui/button";
-import { RegisterForm } from "../_components/RegisterForm";
+import { UserForm } from "../_components/UserForm";
 
-const Register = () => {
+const Login = () => {
     const searchParams = useSearchParams();
     const isAdmin = searchParams.get('admin') === 'true';;
 
@@ -25,9 +25,15 @@ const Register = () => {
                         className="mb-2 h-20 w-fit"
                     />
 
-                    <RegisterForm />
+                    <UserForm />
+                    <div className="mt-4 text-sm">
+                        <p className="">Already have a account ?
+                            <span >
+                                <Link className="pl-2 font-bold text-primary" href={'/login'}>Login</Link>
+                            </span></p>
+                    </div>
 
-                    <div className="text-14-regular mt-20 flex justify-between items-center">
+                    <div className="text-14-regular mt-12 flex justify-between items-center">
                         <p className="justify-items-end text-600 text-color xl:text-left">
                             © 2025 Health Care
                         </p>
@@ -37,6 +43,7 @@ const Register = () => {
                             </Link>
                         </Button>
                     </div>
+
                 </div>
             </section>
 
@@ -51,4 +58,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Login;
