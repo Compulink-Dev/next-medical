@@ -25,7 +25,7 @@ async function Clinics() {
                     <ClinicModal>
                         <button className='flex gap-2 items-center border py-2 px-4 border-slate-700 hover:border-slate-200 rounded'>
                             <Plus size={14} />
-                            <p className="text-sm">Add Clinic</p>
+                            <p className="text-sm">Add Clinics</p>
                         </button>
                     </ClinicModal>
 
