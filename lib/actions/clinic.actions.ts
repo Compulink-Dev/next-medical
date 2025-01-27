@@ -30,6 +30,28 @@ export const createClinic = async (
     }
 };
 
+
+// In clinic.actions.ts
+export const updateClinic = async (
+    clinicId: string,
+    clinicData: { name: string; email: string; phone: string; address: string }
+) => {
+    try {
+        const updatedClinic = await databases.updateDocument(
+            DATABASE_ID!,
+            CLINIC_COLLECTION_ID!,
+            clinicId,
+            clinicData
+        );
+
+        return parseStringify(updatedClinic); // Make sure this returns the updated clinic correctly
+    } catch (error) {
+        console.error("Error while updating clinic:", error);
+    }
+};
+
+
+
 // GET CLINIC
 export const getClinic = async (userId: string) => {
     try {
@@ -45,6 +67,22 @@ export const getClinic = async (userId: string) => {
             "An error occurred while retrieving the clinic details:",
             error
         );
+    }
+};
+
+// DELETE CLINIC
+export const deleteClinic = async (clinicId: string) => {
+    try {
+        await databases.deleteDocument(DATABASE_ID!, CLINIC_COLLECTION_ID!, clinicId);
+
+        console.log(`Clinic with ID ${clinicId} has been deleted successfully.`);
+        return true; // Optionally, return a value to indicate success
+    } catch (error) {
+        console.error(
+            "An error occurred while deleting the clinic:",
+            error
+        );
+        return false; // Optionally, return a value to indicate failure
     }
 };
 

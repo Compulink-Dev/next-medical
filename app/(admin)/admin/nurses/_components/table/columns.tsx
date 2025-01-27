@@ -2,7 +2,6 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Nurse } from "@/types/appwrite.types";
-import ActionButtons from "@/app/(admin)/_components/ActionButtons";
 
 
 
@@ -136,7 +135,7 @@ export const columns: ColumnDef<Nurse>[] = [
 
       return (
         <div className="flex gap-1">
-          <ActionButtons />
+
         </div>
       );
     },

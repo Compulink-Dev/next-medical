@@ -3,6 +3,9 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Medicine } from "@/types/appwrite.types";
 import ActionButtons from "@/app/(admin)/_components/ActionButtons";
+import EditMedicineModal from "@/components/modals/edit/EditMedicineModal";
+import { Button } from "@/components/ui/button";
+import { Pen } from "lucide-react";
 
 
 export const columns: ColumnDef<Medicine>[] = [
@@ -54,11 +57,18 @@ export const columns: ColumnDef<Medicine>[] = [
   {
     id: "actions",
     header: () => <div className="pl-4">Actions</div>,
-    cell: () => {
-
+    cell: ({ row }) => {
+      const medicine = row.original;
 
       return (
-        <ActionButtons />
+        <ActionButtons clinicId={medicine.$id} >
+          <EditMedicineModal defaultValues={medicine} medicineId={medicine.$id}>
+            <Button variant={'outline'} className="border-slate-400 hover:bg-slate-500">
+              <Pen size={10} />
+              <p className="text-xs">Edit</p>
+            </Button>
+          </EditMedicineModal>
+        </ActionButtons>
       );
     },
   },

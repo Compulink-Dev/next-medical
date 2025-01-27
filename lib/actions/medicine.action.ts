@@ -30,6 +30,26 @@ export const createMedicine = async (
     }
 };
 
+
+// In medicine.actions.ts
+export const updateMedicine = async (
+    medicineId: string,
+    medicineData: { name: string; dosage: string; description: string; stock: string; }
+) => {
+    try {
+        const updatedMedicine = await databases.updateDocument(
+            DATABASE_ID!,
+            MEDICINE_COLLECTION_ID!,
+            medicineId,
+            medicineData
+        );
+
+        return parseStringify(updatedMedicine); // Make sure this returns the updated medicine correctly
+    } catch (error) {
+        console.error("Error while updating medicine:", error);
+    }
+};
+
 // GET MEDICINE
 export const getMedicine = async (userId: string) => {
     try {
