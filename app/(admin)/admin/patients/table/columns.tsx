@@ -4,6 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Patient } from "@/types/appwrite.types";
 import { Button } from "@/components/ui/button";
 import { Pen, Trash } from "lucide-react";
+import ActionButtons from "@/app/(admin)/_components/ActionButtons";
 
 
 export const columns: ColumnDef<Patient>[] = [
@@ -158,16 +159,7 @@ export const columns: ColumnDef<Patient>[] = [
 
 
       return (
-        <div className="flex gap-4 items-center ">
-          <Button className="bg-slate-400 hover:bg-slate-500 text-slate-950">
-            <Pen size={10} />
-            <p className="text-xs">Edit</p>
-          </Button>
-          <Button variant={'destructive'} className="bg-red-700 hover:bg-red-500">
-            <Trash size={10} />
-            <p className="text-xs">Delete</p>
-          </Button>
-        </div>
+        <ActionButtons />
       );
     },
   },
