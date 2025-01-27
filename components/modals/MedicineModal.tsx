@@ -14,7 +14,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserMedicineValidation } from '@/lib/validation';
-import { createClinic } from '@/lib/actions/clinic.actions';
 import { revalidatePath } from 'next/cache';
 import { createMedicine } from '@/lib/actions/medicine.action';
 
