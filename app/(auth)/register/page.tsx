@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from 'next/navigation';
 import { PasskeyModal } from "@/components/PasskeyModal";;
 import { UserForm } from "../_components/UserForm";
+import { Button } from "@/components/ui/button";
 
 const Register = () => {
     const searchParams = useSearchParams();
@@ -35,6 +36,13 @@ const Register = () => {
                         <p className="justify-items-end text-600 text-color xl:text-left">
                             © 2025 Health Care
                         </p>
+                        {/* <Button className="shad-primary-btn">
+                            <Link
+                                href="/?admin=true"
+                                className="">
+                                Admin
+                            </Link>
+                        </Button> */}
                     </div>
 
                 </div>

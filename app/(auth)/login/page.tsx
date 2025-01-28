@@ -36,7 +36,10 @@ const LoginPage = () => {
                             © 2025 Health Care
                         </p>
                         <Button className="shad-primary-btn">
-                            <Link href="/?admin=true" className="">
+                            <Link
+                                href="/admin"
+                                // href="/?admin=true" 
+                                className="">
                                 Admin
                             </Link>
                         </Button>

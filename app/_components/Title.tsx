@@ -8,7 +8,7 @@ function Title({ title, subtitle, textColor }: { title: string, subtitle: string
             <div className="flex justify-center items-center mt-4">
                 <div className="h-1 bg-gray-300 w-20"></div>
                 <div className="mx-2">
-                    <Image width={50} height={50} src="assets/icons/healthcare_logo.png" alt="icon" className="h-10 animate-pulse" />
+                    <Image width={50} height={50} src="/assets/icons/healthcare_logo.png" alt="icon" className="h-10 animate-pulse" />
                 </div>
                 <div className="h-1 bg-gray-300 w-20"></div>
             </div>

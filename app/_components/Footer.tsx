@@ -8,7 +8,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div className="st-footer-widget">
                         <div className="st-text-field">
-                            <Image src="assets/icons/healthcare_logo.png" alt="Nischinto" className="w-32 h-32 mb-4 animate-pulse" width={100} height={100} />
+                            <Image src="/assets/icons/healthcare_logo.png" alt="Nischinto" className="w-32 h-32 mb-4 animate-pulse" width={100} height={100} />
                             <div className="text-gray-600 mb-4">Lorem ipsum dolor sit consectet adipisicing sed do eiusmod temp incididunt ut labore. Lorem Ipsum is simply dummy.</div>
                             <ul className="flex justify-start space-x-4">
                                 <li><a href="#" className="text-gray-600 hover:text-gray-900"><i className="fab fa-facebook-square"></i></a></li>
