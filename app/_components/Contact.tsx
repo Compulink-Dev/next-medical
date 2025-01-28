@@ -9,7 +9,7 @@ const ContactSection = () => {
             <div className="absolute top-5 left-5">
                 <Image className='animate-bounce' src="/assets/icons/medical.svg" alt="shape1" width={50} height={50} />
             </div>
-            <div className="absolute top-8 right-8">
+            <div className="absolute bottom-8 right-8">
                 <Image className='animate-bounce' src="/assets/icons/medicalkit.svg" alt="shape2" width={50} height={50} />
             </div>
 
