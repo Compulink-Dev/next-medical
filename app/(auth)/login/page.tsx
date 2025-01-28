@@ -4,12 +4,15 @@ import { Button } from "@/components/ui/button";
 import { LoginForm } from "../_components/LoginForm";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { PasskeyModal } from "@/components/PasskeyModal";
 const LoginPage = () => {
-
+    const searchParams = useSearchParams();
+    const isAdmin = searchParams.get('admin') === 'true';;
 
     return (
         <div className="flex h-screen max-h-screen">
-
+            {isAdmin && <PasskeyModal />}
             <section className="remove-scrollbar container  my-auto">
                 <div className="sub-container max-w-[496px]">
                     <Image

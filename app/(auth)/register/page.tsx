@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { PasskeyModal } from "@/components/PasskeyModal";;
 import { UserForm } from "../_components/UserForm";
 
-const Login = () => {
+const Register = () => {
     const searchParams = useSearchParams();
     const isAdmin = searchParams.get('admin') === 'true';;
 
@@ -51,4 +51,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;
