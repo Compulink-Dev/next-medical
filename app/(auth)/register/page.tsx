@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from 'next/navigation';
 import { PasskeyModal } from "@/components/PasskeyModal";;
 import { UserForm } from "../_components/UserForm";
-import { Button } from "@/components/ui/button";
+
 
 const Register = () => {
     const searchParams = useSearchParams();
