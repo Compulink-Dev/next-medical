@@ -32,7 +32,7 @@ const Header = () => {
     }, [])
 
     return (
-        <header className={`fixed top-0 z-50 left-0 w-full py-4 transition-all duration-300 ${headerBgColor === 'transparent' ? 'bg-transparent' : 'bg-[#1a1d21] shadow-md'} h-[80px]`}>
+        <header className={`fixed top-0 z-50 left-0 w-full py-4 transition-all duration-300 ${headerBgColor === 'transparent' ? 'bg-transparent' : 'bg-[#1a1d21] shadow-md opacity-80'} h-[80px]`}>
             <div className="container mx-auto flex justify-between items-center">
                 <div className="logo">
                     <Link href="/">
