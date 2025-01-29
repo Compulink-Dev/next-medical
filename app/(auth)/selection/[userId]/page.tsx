@@ -21,8 +21,8 @@ const Selection = () => {
 
         console.log('user', user);
 
-        if (nurse) redirect(`/dashboard`);
-        if (patient) redirect(`/dashboard`);
+        if (nurse) redirect("/dashboard");
+        if (patient) redirect("/dashboard");
     };
 
     handleGetUser();
