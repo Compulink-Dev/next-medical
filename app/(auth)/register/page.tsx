@@ -2,8 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from 'next/navigation';
-import { PasskeyModal } from "@/components/PasskeyModal"; import { RegisterForm } from "../_components/RegisterForm";
-;
+import { PasskeyModal } from "@/components/PasskeyModal";
+import { RegisterForm } from "../_components/RegisterForm";
 
 
 
