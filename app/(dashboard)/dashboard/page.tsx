@@ -1,61 +1,51 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Models } from "node-appwrite";
-import { account } from "@/lib/appwrite.config";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { getSession } from "@/lib/actions/login";
+import Loading from "@/components/Loading";
 
-type Preferences = {
-  notificationsEnabled: boolean;
-  preferredLanguage: string;
-};
-
-type User = Models.User<Preferences>;
 
 const Dashboard = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<{ userId: string; email: string; name: string } | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-
-  console.log(loading);
-
   useEffect(() => {
-    async function fetchUserSession() {
+    const fetchUser = async () => {
+      const userId = sessionStorage.getItem("userId");
+      if (!userId) {
+        toast.error("No active session found. Redirecting...");
+        router.push("/login");
+        return;
+      }
+
       try {
-        console.log("Checking user session...");
+        const userData = await getSession(userId);
+        setUser(userData);
+        toast.success("Session active");
+      } catch (error) {
+        console.log(error);
 
-        // Fetch user session
-        const user: User = await account.get();
-        console.log("Fetched user:", user);
-
-        // Set user in state
-        setUser(user);
-      } catch (error: any) {
-        console.error("Failed to fetch user session:", error);
-        setError("You are not authenticated. Redirecting to login...");
-
-
-        // Redirect to login if not authenticated
+        toast.error("Session expired. Redirecting...");
         router.push("/login");
       } finally {
         setLoading(false);
       }
-    }
+    };
 
-    fetchUserSession();
+    fetchUser();
   }, [router]);
 
-  if (!user) return <p>Loading...</p>;
+  if (loading) return <Loading />;
 
   return (
-    <div>
+    <div className="container my-8">
       <h1>Welcome to the Dashboard</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
       {user && (
         <div>
-          <h2>Hello, {user.name}!</h2>
+          <h2>Hello, {user.name}</h2>
           <p>Email: {user.email}</p>
         </div>
       )}
