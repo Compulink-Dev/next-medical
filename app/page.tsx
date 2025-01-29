@@ -14,7 +14,7 @@ function Home() {
   return (
     <div className=''>
       <Header />
-      <main className="mt-[80px]">
+      <main className="">
         <Hero />
         <About />
         <Services />
