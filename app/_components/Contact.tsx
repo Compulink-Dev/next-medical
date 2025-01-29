@@ -1,101 +1,84 @@
-import Image from 'next/image';
-import Title from './Title';
-import { Button } from '@/components/ui/button';
+"use client";
+
+import Image from "next/image";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useState } from "react";
+
+import { Form } from "@/components/ui/form";
+import CustomFormField, { FormFieldType } from "@/components/CustomFormField";
+import SubmitButton from "@/components/SubmitButton";
+import Title from "./Title";
+
+
+const ContactFormValidation = z.object({
+    name: z.string().min(2, "Full Name is required"),
+    email: z.string().email("Invalid email address"),
+    subject: z.string().min(3, "Subject is required"),
+    phone: z.string().min(7, "Phone number is required"),
+    message: z.string().min(10, "Message must be at least 10 characters"),
+});
 
 const ContactSection = () => {
+    const [isLoading, setIsLoading] = useState(false);
+
+    const form = useForm<z.infer<typeof ContactFormValidation>>({
+        resolver: zodResolver(ContactFormValidation),
+        defaultValues: {
+            name: "",
+            email: "",
+            subject: "",
+            phone: "",
+            message: "",
+        },
+    });
+
+    const onSubmit = async (values: z.infer<typeof ContactFormValidation>) => {
+        setIsLoading(true);
+
+        try {
+            console.log("Form submitted with values:", values);
+            // Add API call or logic to handle form submission
+        } catch (error) {
+            console.error("Error submitting form:", error);
+        }
+
+        setIsLoading(false);
+    };
+
     return (
         <section className="relative" id="contact">
             {/* Shape Backgrounds */}
             <div className="absolute top-5 left-5">
-                <Image className='animate-bounce' src="/assets/icons/medical.svg" alt="shape1" width={50} height={50} />
+                <Image className="animate-bounce" src="/assets/icons/medical.svg" alt="shape1" width={50} height={50} />
             </div>
             <div className="absolute bottom-8 right-8">
-                <Image className='animate-bounce' src="/assets/icons/medicalkit.svg" alt="shape2" width={50} height={50} />
+                <Image className="animate-bounce" src="/assets/icons/medicalkit.svg" alt="shape2" width={50} height={50} />
             </div>
 
             {/* Section Container */}
             <div className="container mx-auto py-20">
                 {/* Section Heading */}
                 <Title
-                    title='Stay Connected With Us'
-                    subtitle="Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum the industry's standard dummy text."
+                    title="Stay Connected With Us"
+                    subtitle="Reach out for any inquiries or support."
                 />
 
                 {/* Contact Form */}
-                <div className="max-w-4xl mx-auto">
-                    <form
-                        action="/assets/php/mail.php"
-                        method="POST"
-                        className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-                        id="contact-form"
-                    >
-                        <div>
-                            <label className="block text-sm font-medium mb-2">Full Name</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                placeholder="John Doe"
-                                required
-                                className="w-full p-3 border border-gray-300 rounded-md"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium mb-2">Email Address</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="example@gmail.com"
-                                required
-                                className="w-full p-3 border border-gray-300 rounded-md"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium mb-2">Subject</label>
-                            <input
-                                type="text"
-                                id="subject"
-                                name="subject"
-                                placeholder="Write subject"
-                                required
-                                className="w-full p-3 border border-gray-300 rounded-md"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium mb-2">Phone</label>
-                            <input
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                                placeholder="+00 376 12 465"
-                                required
-                                className="w-full p-3 border border-gray-300 rounded-md"
-                            />
-                        </div>
-                        <div className="sm:col-span-2">
-                            <label className="block text-sm font-medium mb-2">Your Message</label>
-                            <textarea
-                                id="msg"
-                                name="msg"
-                                rows={4}
-                                placeholder="Write something here..."
-                                required
-                                className="w-full p-3 border border-gray-300 rounded-md"
-                            ></textarea>
-                        </div>
-                        <div className="sm:col-span-2 w-full">
-                            <Button
-                                variant={'outline'}
-                                type="submit"
-                                id="submit"
-                                name="submit"
-                                className="text-white font-medium rounded-md hover:bg-blue-600"
-                            >
-                                Send Message
-                            </Button>
-                        </div>
-                    </form>
+                <div className="max-w-4xl mx-auto mt-8">
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <CustomFormField fieldType={FormFieldType.INPUT} control={form.control} name="name" label="Full Name" placeholder="John Doe" />
+                            <CustomFormField fieldType={FormFieldType.INPUT} control={form.control} name="email" label="Email Address" placeholder="example@gmail.com" />
+                            <CustomFormField fieldType={FormFieldType.INPUT} control={form.control} name="subject" label="Subject" placeholder="Write subject" />
+                            <CustomFormField fieldType={FormFieldType.PHONE_INPUT} control={form.control} name="phone" label="Phone" placeholder="+00 376 12 465" />
+                            <CustomFormField fieldType={FormFieldType.TEXTAREA} control={form.control} name="message" label="Your Message" placeholder="Write something here..." />
+                            <div className="sm:col-span-2 w-full">
+                                <SubmitButton isLoading={isLoading} className="shad-primary-btn w-full">Send Message</SubmitButton>
+                            </div>
+                        </form>
+                    </Form>
                 </div>
             </div>
         </section>

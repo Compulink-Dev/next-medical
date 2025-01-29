@@ -1,34 +1,38 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
 import { Form, FormControl } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { SelectItem } from "@/components/ui/select";
 import {
-  Doctors,
   GenderOptions,
   IdentificationTypes,
   PatientFormDefaultValues,
 } from "@/constants";
 import { registerPatient } from "@/lib/actions/user.actions";
 import { PatientFormValidation } from "@/lib/validation";
-
 import "react-datepicker/dist/react-datepicker.css";
 import "react-phone-number-input/style.css";
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import { FileUploader } from "../FileUploader";
 import SubmitButton from "../SubmitButton";
+import { Clinic } from "@/types/appwrite.types";
+import { Hospital } from "lucide-react";
 
-const RegisterForm = ({ user }: { user: User }) => {
+interface RegisterFormProps {
+  user: User;
+  clinics: Clinic[]; // Ensure clinics is an array
+}
+
+const RegisterForm = ({ user, clinics }: RegisterFormProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+
 
   const form = useForm<z.infer<typeof PatientFormValidation>>({
     resolver: zodResolver(PatientFormValidation),
@@ -70,13 +74,13 @@ const RegisterForm = ({ user }: { user: User }) => {
         occupation: values.occupation,
         emergencyContactName: values.emergencyContactName,
         emergencyContactNumber: values.emergencyContactNumber,
-        primaryPhysician: values.primaryPhysician,
+        primaryClinic: values.primaryClinic,
         insuranceProvider: values.insuranceProvider,
         insurancePolicyNumber: values.insurancePolicyNumber,
-        allergies: values.allergies,
-        currentMedication: values.currentMedication,
-        familyMedicalHistory: values.familyMedicalHistory,
-        pastMedicalHistory: values.pastMedicalHistory,
+        allergies: values.allergies || 'No allergies',
+        currentMedication: values.currentMedication || "N/A",
+        familyMedicalHistory: values.familyMedicalHistory || 'N/A',
+        pastMedicalHistory: values.pastMedicalHistory || 'N/A',
         identificationType: values.identificationType,
         identificationNumber: values.identificationNumber,
         identificationDocument: values.identificationDocument
@@ -229,21 +233,15 @@ const RegisterForm = ({ user }: { user: User }) => {
           <CustomFormField
             fieldType={FormFieldType.SELECT}
             control={form.control}
-            name="primaryPhysician"
-            label="Primary care physician"
-            placeholder="Select a physician"
+            name="primaryClinic"
+            label="Primary care clinic"
+            placeholder="Select a clinic"
           >
-            {Doctors.map((doctor, i) => (
-              <SelectItem key={doctor.name + i} value={doctor.name}>
+            {clinics.map((clinic, i) => (
+              <SelectItem key={clinic.name + i} value={clinic.name}>
                 <div className="flex cursor-pointer items-center gap-2">
-                  <Image
-                    src={doctor.image}
-                    width={32}
-                    height={32}
-                    alt="doctor"
-                    className="rounded-full border border-dark-500"
-                  />
-                  <p>{doctor.name}</p>
+                  <Hospital />
+                  <p>{clinic.name}</p>
                 </div>
               </SelectItem>
             ))}
@@ -309,7 +307,7 @@ const RegisterForm = ({ user }: { user: User }) => {
 
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
-            <h2 className="sub-header">Identification and Verfication</h2>
+            <h2 className="sub-header">Identification and Verification</h2>
           </div>
 
           <CustomFormField

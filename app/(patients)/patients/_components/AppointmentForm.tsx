@@ -1,26 +1,26 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
+
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { SelectItem } from "@/components/ui/select";
-import { Doctors } from "@/constants";
 import {
   createAppointment,
   updateAppointment,
 } from "@/lib/actions/appointment.actions";
 import { getAppointmentSchema } from "@/lib/validation";
-import { Appointment } from "@/types/appwrite.types";
+import { Appointment, Clinic } from "@/types/appwrite.types";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import CustomFormField, { FormFieldType } from "../CustomFormField";
-import SubmitButton from "../SubmitButton";
-import { Form } from "../ui/form";
+import { Hospital } from "lucide-react";
+import { Form } from "@/components/ui/form";
+import CustomFormField, { FormFieldType } from "@/components/CustomFormField";
+import SubmitButton from "@/components/SubmitButton";
 
 export const AppointmentForm = ({
   userId,
@@ -28,12 +28,14 @@ export const AppointmentForm = ({
   type = "create",
   appointment,
   setOpen,
+  clinics
 }: {
   userId: string;
   patientId: string;
   type: "create" | "schedule" | "cancel";
   appointment?: Appointment;
   setOpen?: Dispatch<SetStateAction<boolean>>;
+  clinics: Clinic[]
 }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -75,7 +77,7 @@ export const AppointmentForm = ({
         const appointment = {
           userId,
           patient: patientId,
-          primaryClinic: values.primaryClinic!,
+          primaryClinic: values.primaryClinic,
           schedule: new Date(values.schedule),
           reason: values.reason!,
           status: status as Status,
@@ -126,7 +128,7 @@ export const AppointmentForm = ({
       buttonLabel = "Schedule Appointment";
       break;
     default:
-      buttonLabel = "Submit Apppointment";
+      buttonLabel = "Submit Appointment";
   }
 
   return (
@@ -146,21 +148,15 @@ export const AppointmentForm = ({
             <CustomFormField
               fieldType={FormFieldType.SELECT}
               control={form.control}
-              name="primaryPhysician"
-              label="Doctor"
-              placeholder="Select a doctor"
+              name="primaryClinic"
+              label="Clinic"
+              placeholder="Select a clinic"
             >
-              {Doctors.map((doctor, i) => (
-                <SelectItem key={doctor.name + i} value={doctor.name}>
+              {clinics.map((clinic, i) => (
+                <SelectItem key={clinic.name + i} value={clinic.name}>
                   <div className="flex cursor-pointer items-center gap-2">
-                    <Image
-                      src={doctor.image}
-                      width={32}
-                      height={32}
-                      alt="doctor"
-                      className="rounded-full border border-dark-500"
-                    />
-                    <p>{doctor.name}</p>
+                    <Hospital />
+                    <p>{clinic.name}</p>
                   </div>
                 </SelectItem>
               ))}

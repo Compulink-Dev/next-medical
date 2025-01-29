@@ -1,6 +1,7 @@
 import React from 'react'
 import Title from './Title'
 import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 
 const LatestNews = () => {
     const newsArticles = [
@@ -36,13 +37,13 @@ const LatestNews = () => {
                 />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {newsArticles.map((article) => (
-                        <div key={article.id} className="bg-white shadow-md rounded-lg p-4">
+                        <div key={article.id} className="bg-dark-400 shadow-md rounded-lg p-4">
                             <Image className="w-full h-48 object-cover rounded-t-lg mb-4" src={article.image} alt={article.title} width={100} height={100} />
                             <div className="p-4">
                                 <h3 className="text-lg font-bold mb-2">{article.title}</h3>
                                 <p className="text-sm text-gray-600 mb-4">{article.date}</p>
                                 <p className="text-lg">{article.excerpt}</p>
-                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Read More</button>
+                                <Button variant={'outline'} className="mt-4 ">Read More</Button>
                             </div>
                         </div>
                     ))}

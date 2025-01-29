@@ -12,7 +12,7 @@ function Title({ title, subtitle, textColor }: { title: string, subtitle: string
                 </div>
                 <div className="h-1 bg-gray-300 w-20"></div>
             </div>
-            <p className="mt-4 text-gray-600">
+            <p className="mt-4 text-gray-400">
                 {subtitle}
             </p>
         </div>

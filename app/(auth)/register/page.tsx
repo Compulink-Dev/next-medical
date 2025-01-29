@@ -2,8 +2,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from 'next/navigation';
-import { PasskeyModal } from "@/components/PasskeyModal";;
-import { RegisterForm } from "../_components/RegisterForm";
+import { PasskeyModal } from "@/components/PasskeyModal"; import { RegisterForm } from "../_components/RegisterForm";
+;
+
 
 
 const Register = () => {
@@ -23,7 +24,6 @@ const Register = () => {
                         alt="patient"
                         className="mb-2 h-20 w-fit"
                     />
-
                     <RegisterForm />
                     <div className="mt-4 text-sm">
                         <p className="">Already have a account ?

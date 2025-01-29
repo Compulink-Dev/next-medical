@@ -42,7 +42,7 @@ export const RegisterForm = () => {
             const newUser = await createUser(user);
 
             if (newUser) {
-                router.push(`/patients/${newUser.$id}/register`);
+                router.push(`/selection/${newUser.$id}`);
             }
         } catch (error) {
             console.log(error);
@@ -55,8 +55,8 @@ export const RegisterForm = () => {
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 space-y-6">
                 <section className="mb-6 space-y-4">
-                    <h1 className="header">Register as a Patient </h1>
-                    <p className="text-color">Get started with appointments.</p>
+                    <h1 className="header">Register your account</h1>
+                    <p className="text-color">Get started now, access your dashboard.</p>
                 </section>
 
                 <CustomFormField
@@ -86,7 +86,15 @@ export const RegisterForm = () => {
                     label="Phone number"
                     placeholder="(263) 778 191 278"
                 />
-
+                <CustomFormField
+                    fieldType={FormFieldType.PASSWORD}
+                    control={form.control}
+                    name="password"
+                    label="Password"
+                    placeholder="Enter password"
+                    iconSrc="/assets/icons/user.svg"
+                    iconAlt="user"
+                />
                 <SubmitButton isLoading={isLoading} className="shad-primary-btn w-full">Register Now</SubmitButton>
             </form>
         </Form>

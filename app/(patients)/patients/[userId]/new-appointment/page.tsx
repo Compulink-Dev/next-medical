@@ -1,5 +1,6 @@
 import { getPatient } from "@/lib/actions/user.actions";
 import { AppointmentClient } from "../../_components/AppointmentClient";
+import { getAllClinics } from "@/lib/actions/clinic.actions";
 
 // Define the type for route params
 type Params = {
@@ -13,6 +14,8 @@ type SearchParamProps = {
 const AppointmentPage = async ({ params }: SearchParamProps) => {
   const { userId } = await params; // Await the promise to get the params
 
+  const clinics = await getAllClinics() || [];
+
   let patient = null;
 
   try {
@@ -23,6 +26,7 @@ const AppointmentPage = async ({ params }: SearchParamProps) => {
 
   return (
     <AppointmentClient
+      clinics={clinics}
       patientId={patient?.$id || ""}
       userId={userId}
       hasError={!patient}

@@ -1,18 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { AppointmentForm } from "@/components/forms/AppointmentForm";
+import { Clinic } from "@/types/appwrite.types";
+import { AppointmentForm } from "./AppointmentForm";
 
 type AppointmentClientProps = {
     patientId: string;
     userId: string;
     hasError: boolean;
+    clinics: Clinic[]
 };
 
 export const AppointmentClient = ({
     patientId,
     userId,
     hasError,
+    clinics
 }: AppointmentClientProps) => {
     return (
         <div className="flex h-screen max-h-screen">
@@ -32,7 +35,7 @@ export const AppointmentClient = ({
                             Failed to load patient data. Please try again later.
                         </p>
                     ) : (
-                        <AppointmentForm patientId={patientId} userId={userId} type="create" />
+                        <AppointmentForm patientId={patientId} userId={userId} clinics={clinics} type="create" />
                     )}
 
                     <p className="copyright mt-10 py-12 text-gray-500">

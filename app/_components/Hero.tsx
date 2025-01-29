@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import React from 'react'
 
 const Hero = () => {
@@ -8,7 +9,7 @@ const Hero = () => {
                     <div className="container px-4 py-8">
                         <h1 className="text-4xl font-bold mb-4">Welcome to Our Medical Center</h1>
                         <p className="text-lg mb-8">We provide high-quality medical care to our patients with compassion and dedication.</p>
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Learn More</button>
+                        <Button variant={'outline'}>Learn More</Button>
                     </div>
                     <div className=""></div>
                 </div>

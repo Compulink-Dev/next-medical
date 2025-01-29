@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 
 import RegisterForm from "@/components/forms/RegisterForm";
 import { getPatient, getUser } from "@/lib/actions/user.actions";
+import { getAllClinics } from "@/lib/actions/clinic.actions";
 
 type SearchParamProps = {
   params: Promise<{ userId: string }>;
@@ -12,6 +13,11 @@ const Register = async ({ params }: SearchParamProps) => {
   const { userId } = await params;
   const user = await getUser(userId);
   const patient = await getPatient(userId);
+  const clinics = await getAllClinics() || [];
+
+
+  console.log('Clinic data:', clinics);
+
 
   if (patient) redirect(`/patients/${userId}/new-appointment`);
 
@@ -27,7 +33,7 @@ const Register = async ({ params }: SearchParamProps) => {
             className="mb-2 h-20 w-fit"
           />
 
-          <RegisterForm user={user} />
+          <RegisterForm clinics={clinics} user={user} />
 
           <p className="copyright py-12"> 2025 Health Care</p>
         </div>
