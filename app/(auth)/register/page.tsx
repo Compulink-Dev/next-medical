@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from 'next/navigation';
 import { PasskeyModal } from "@/components/PasskeyModal";;
 import { UserForm } from "../_components/UserForm";
+import { RegisterForm } from "../_components/RegisterForm";
 
 
 const Register = () => {
@@ -24,7 +25,7 @@ const Register = () => {
                         className="mb-2 h-20 w-fit"
                     />
 
-                    <UserForm />
+                    <RegisterForm />
                     <div className="mt-4 text-sm">
                         <p className="">Already have a account ?
                             <span >
