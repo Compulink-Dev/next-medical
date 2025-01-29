@@ -7,11 +7,11 @@ type Params = {
 };
 
 type SearchParamProps = {
-  params: Params; // ✅ Correct: params is a plain object
+  params: Promise<Params>; // Update the type to Promise<Params>
 };
 
 const AppointmentPage = async ({ params }: SearchParamProps) => {
-  const { userId } = params; // Await the promise to get the params
+  const { userId } = await params; // Await the promise to get the params
 
   let patient = null;
 
