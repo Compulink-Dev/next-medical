@@ -9,7 +9,7 @@ const Selection = () => {
     if (!userId) {
         // Handle the case where userId is undefined or an array
         // You could redirect to an error page or throw an error
-        throw new Error("User ID is required");
+        throw new Error("User ID  a must and required");
     }
 
     const userIdString = Array.isArray(userId) ? userId[0] : userId.toString();
