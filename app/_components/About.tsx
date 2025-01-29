@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const About = () => {
     return (
-        <section id='about' className="py-12">
+        <section id='about' className="py-20">
             <div className="container mx-auto">
                 <Title
                     title='About Us'

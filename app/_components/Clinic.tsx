@@ -53,7 +53,7 @@ const Clinics = () => {
     ];
 
     return (
-        <section className="py-12">
+        <section id='clinics' className="py-20">
             <div className="container mx-auto">
                 <Title title='Our Clinics' subtitle='We have multiple clinics to serve our patients' />
                 <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-8">

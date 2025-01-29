@@ -47,7 +47,7 @@ const Nurses = () => {
     ];
 
     return (
-        <section className="py-12">
+        <section className="py-20">
             <div className="container mx-auto">
                 <Title title="Our Nurses" subtitle="We have a dedicated team of nurses to care for our patients" />
 
