@@ -168,7 +168,7 @@ function Header() {
                         <div className="flex items-center gap-4 cursor-pointer">
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                    <Avatar className="bg-dark-400 font-bold">
+                                    <Avatar className="bg-dark-400 font-bold cursor-pointer">
                                         <AvatarImage src={``} alt={user.name} />
                                         <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
                                     </Avatar>
