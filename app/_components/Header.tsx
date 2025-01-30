@@ -39,7 +39,7 @@ const Header = () => {
                         <Image className="animate-pulse" src="/assets/icons/healthcare_logo.png" alt="Logo" width={50} height={50} />
                     </Link>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 cursor-pointer">
                     <nav className={`nav-links text-xs ${headerBgColor === 'transparent' ? 'text-white' : ' font-bold'}`}>
                         <ul className="flex items-center">
                             <li className="mr-6">

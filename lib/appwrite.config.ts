@@ -14,7 +14,7 @@ export const {
     NEXT_PUBLIC_BUCKET_ID: BUCKET_ID,
 } = process.env
 
-console.log("Environment Variables:");
+console.log("Environment Variable:");
 console.log({
     PROJECT_ID,
     ENDPOINT,
@@ -30,7 +30,7 @@ console.log({
 });
 
 
-console.log("Appwrite Endpoint:", process.env.NEXT_PUBLIC_ENDPOINT || "Not defined");
+console.log("Appwrite Endpoints:", process.env.NEXT_PUBLIC_ENDPOINT || "Not defined");
 console.log("Appwrite Project ID:", process.env.NEXT_PUBLIC_PROJECT_ID || "Not defined");
 
 if (!process.env.NEXT_PUBLIC_ENDPOINT || !process.env.NEXT_PUBLIC_PROJECT_ID) {
