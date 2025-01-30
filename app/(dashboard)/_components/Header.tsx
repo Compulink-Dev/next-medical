@@ -165,7 +165,7 @@ function Header() {
 
                     {/* User Avatar */}
                     {user && (
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-4 cursor-pointer">
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                     <Avatar className="bg-dark-400 font-bold">
