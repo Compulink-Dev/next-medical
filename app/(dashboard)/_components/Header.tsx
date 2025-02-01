@@ -8,13 +8,13 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
-} from '@/components/ui/tooltip';
+} from "@/components/ui/tooltip";
 import { Activity, CalendarCheck, ClipboardPlus, Hospital, Pill, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,6 +27,7 @@ function Header() {
     const { user, logout } = useAuth(); // Get user and logout function
     const pathname = usePathname();
 
+
     // Check if the current pathname starts with the given path
     const isActive = (path: string) => pathname.startsWith(path);
 
@@ -38,6 +39,10 @@ function Header() {
             .join("")
             .toUpperCase();
     };
+
+    // Check if the user's label is either "nurse" or "doctor"
+    //@ts-ignore
+    const isHealthcareProvider = user?.label === "nurse" || user?.label === "doctor";
 
     return (
         <div className="mx-auto flex max-w-7xl flex-col space-y-14 pt-8">
@@ -53,23 +58,27 @@ function Header() {
                 </Link>
 
                 <div className="flex gap-10 items-center">
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger>
-                                <Link href={'/dashboard/patients'} className="cursor-pointer">
-                                    <Users
-                                        className={
-                                            isActive('/dashboard/patients') ? 'text-white' : 'text-slate-900'
-                                        }
-                                        size={20}
-                                    />
-                                </Link>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                                <p className="text-white">Patients</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
+
+                    {/* Conditionally render the Medicines Management link for nurse or doctor */}
+                    {isHealthcareProvider && (
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger>
+                                    <Link href={'/dashboard/patients'} className="cursor-pointer">
+                                        <Users
+                                            className={
+                                                isActive('/dashboard/patients') ? 'text-slate-900' : 'text-slate-300'
+                                            }
+                                            size={20}
+                                        />
+                                    </Link>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p className="text-white">Patients</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+                    )}
 
                     <TooltipProvider>
                         <Tooltip>
@@ -78,8 +87,7 @@ function Header() {
                                     <CalendarCheck
                                         className={
                                             isActive('/dashboard/appointments')
-                                                ? 'text-white'
-                                                : 'text-slate-900'
+                                                ? 'text-slate-900' : 'text-slate-300'
                                         }
                                         size={20}
                                     />
@@ -97,7 +105,7 @@ function Header() {
                                 <Link href={'/dashboard/health'} className="cursor-pointer">
                                     <Activity
                                         className={
-                                            isActive('/dashboard/health') ? 'text-white' : 'text-slate-900'
+                                            isActive('/dashboard/health') ? 'text-slate-900' : 'text-slate-300'
                                         }
                                         size={20}
                                     />
@@ -109,20 +117,41 @@ function Header() {
                         </Tooltip>
                     </TooltipProvider>
 
+                    {/* Conditionally render the Medicines Management link for nurse or doctor */}
+                    {isHealthcareProvider && (
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger>
+                                    <Link href={'/dashboard/medicines'} className="cursor-pointer">
+                                        <Pill
+                                            className={
+                                                isActive('/dashboard/medicines') ? 'text-slate-900' : 'text-slate-300'
+                                            }
+                                            size={20}
+                                        />
+                                    </Link>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p className="text-white">Medicines Management</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+                    )}
+
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger>
-                                <Link href={'/dashboard/medicines'} className="cursor-pointer">
-                                    <Pill
+                                <Link href={'/dashboard/clinics'} className="cursor-pointer">
+                                    <Hospital
                                         className={
-                                            isActive('/dashboard/medicines') ? 'text-white' : 'text-slate-900'
+                                            isActive('/dashboard/clinics') ? 'text-slate-900' : 'text-slate-300'
                                         }
                                         size={20}
                                     />
                                 </Link>
                             </TooltipTrigger>
                             <TooltipContent>
-                                <p className="text-white">Medicines Management</p>
+                                <p className="text-white">Clinics Synergy</p>
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
@@ -133,7 +162,7 @@ function Header() {
                                 <Link href={'/dashboard/reports'} className="cursor-pointer">
                                     <ClipboardPlus
                                         className={
-                                            isActive('/dashboard/reports') ? 'text-white' : 'text-slate-900'
+                                            isActive('/dashboard/reports') ? 'text-slate-900' : 'text-slate-300'
                                         }
                                         size={20}
                                     />
@@ -145,23 +174,26 @@ function Header() {
                         </Tooltip>
                     </TooltipProvider>
 
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger>
-                                <Link href={'/dashboard/clinics'} className="cursor-pointer">
-                                    <Hospital
-                                        className={
-                                            isActive('/dashboard/clinics') ? 'text-white' : 'text-slate-900'
-                                        }
-                                        size={20}
-                                    />
-                                </Link>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                                <p className="text-white">Clinics Synergy</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
+                    {/* Conditionally render the Medicines Management link for nurse or doctor */}
+                    {!isHealthcareProvider && (
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger>
+                                    <Link href={'/dashboard/patients'} className="cursor-pointer">
+                                        <Users
+                                            className={
+                                                isActive('/dashboard/patients') ? 'text-slate-900' : 'text-slate-300'
+                                            }
+                                            size={20}
+                                        />
+                                    </Link>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p className="text-white">Profile</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+                    )}
 
                     {/* User Avatar */}
                     {user && (

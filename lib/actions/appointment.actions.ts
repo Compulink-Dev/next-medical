@@ -119,7 +119,6 @@ export const sendSMSNotification = async (userId: string, content: string) => {
 //  UPDATE APPOINTMENT
 export const updateAppointment = async ({
   appointmentId,
-  userId,
   timeZone,
   appointment,
   type,
@@ -133,10 +132,13 @@ export const updateAppointment = async ({
       appointment
     );
 
+    console.log("Appointment ID:", appointmentId);
+    console.log("Appointment data:", appointment);
+
     if (!updatedAppointment) throw Error;
 
     const smsMessage = `Greetings from CarePulse. ${type === "schedule" ? `Your appointment is confirmed for ${formatDateTime(appointment.schedule!, timeZone).dateTime} with Dr. ${appointment.primaryPhysician}` : `We regret to inform that your appointment for ${formatDateTime(appointment.schedule!, timeZone).dateTime} is cancelled. Reason:  ${appointment.cancellationReason}`}.`;
-    await sendSMSNotification(userId, smsMessage);
+    await sendSMSNotification(appointment.patient, smsMessage);
 
     revalidatePath("/admin");
     return parseStringify(updatedAppointment);

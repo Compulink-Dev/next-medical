@@ -6,6 +6,7 @@ import ActionButtons from "@/app/(admin)/_components/ActionButtons";
 import EditMedicineModal from "@/components/modals/edit/EditMedicineModal";
 import { Button } from "@/components/ui/button";
 import { Pen } from "lucide-react";
+import { formatDateTime } from "@/lib/utils";
 
 
 export const columns: ColumnDef<Medicine>[] = [
@@ -26,6 +27,25 @@ export const columns: ColumnDef<Medicine>[] = [
     },
   },
   {
+    accessorKey: "category",
+    header: "Category",
+    meta: { width: "450px" },
+    cell: ({ row }) => {
+      const medicine = row.original;
+      return <p className="text-14-medium ">{medicine.category}</p>;
+    },
+  },
+  {
+    accessorKey: "stock",
+    header: "Stock ",
+    meta: { width: "450px" },
+
+    cell: ({ row }) => {
+      const medicine = row.original;
+      return <p className="text-14-medium ">{medicine.stock}</p>;
+    },
+  },
+  {
     accessorKey: "dosage",
     header: "Dosage",
     meta: { width: "450px" },
@@ -35,25 +55,68 @@ export const columns: ColumnDef<Medicine>[] = [
     },
   },
   {
-    accessorKey: "stock",
-    header: "Stock Quantity",
+    accessorKey: "unit",
+    header: "Unit",
     meta: { width: "450px" },
-
     cell: ({ row }) => {
       const medicine = row.original;
-      return <p className="text-14-medium ">{medicine.stock}</p>;
+      return <p className="text-14-medium ">{medicine.unit}</p>;
     },
   },
   {
-    accessorKey: "description",
-    header: "Description",
+    accessorKey: "frequency",
+    header: "Frequency",
     meta: { width: "450px" },
 
     cell: ({ row }) => {
       const medicine = row.original;
-      return <p className="text-14-medium ">{medicine.description}</p>;
+      return <p className="text-14-medium ">{medicine.frequency}</p>;
     },
   },
+  {
+    accessorKey: "price",
+    header: "Price",
+    meta: { width: "450px" },
+    cell: ({ row }) => {
+      const medicine = row.original;
+      return <p className="text-14-medium ">{`$${medicine.price}`}</p>;
+    },
+  },
+  {
+    accessorKey: "expiryDate",
+    header: "Expiry Date",
+    meta: { width: "450px" },
+    cell: ({ row }) => {
+      const medicine = row.original;
+      return <p className="text-14-medium ">{formatDateTime(medicine.expiryDate).dateDay}</p>;
+    },
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+    meta: { width: "450px" },
+    cell: ({ row }) => {
+      const medicine = row.original;
+
+      // Define status colors
+      const statusColors: Record<string, string> = {
+        "In Stock": "text-white bg-green-700",
+        "Out Stock": "text-white bg-red-700",
+        "Low Stock": "text-white bg-yellow-500",
+        "Expired": "text-white bg-black",
+      };
+
+      // Determine color class
+      const statusClass = statusColors[medicine.status] || "text-gray-600 bg-gray-200";
+
+      return (
+        <span className={`px-2 py-1 rounded-md text-sm font-medium ${statusClass}`}>
+          {medicine.status}
+        </span>
+      );
+    },
+  },
+
   {
     id: "actions",
     header: () => <div className="pl-4">Actions</div>,

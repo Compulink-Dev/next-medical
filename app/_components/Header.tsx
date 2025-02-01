@@ -36,7 +36,7 @@ const Header = () => {
             <div className="container mx-auto flex justify-between items-center">
                 <div className="logo">
                     <Link href="/">
-                        <Image className="animate-pulse" src="/assets/icons/healthcare_logo.png" alt="Logo" width={50} height={50} />
+                        <Image className="animate-pulse" src="/assets/icons/logo.png" alt="Logo" width={80} height={80} />
                     </Link>
                 </div>
                 <div className="flex items-center gap-4 cursor-pointer">

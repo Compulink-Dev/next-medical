@@ -124,6 +124,23 @@ export const getPatient = async (userId: string) => {
     }
 };
 
+// UPDATE PATIENT
+export const updatePatient = async (patientId: string, updatedData: Partial<RegisterPatientParams>) => {
+    try {
+        const updatedPatient = await databases.updateDocument(
+            DATABASE_ID!,
+            PATIENT_COLLECTION_ID!,
+            patientId,
+            updatedData
+        );
+
+        return parseStringify(updatedPatient);
+    } catch (error) {
+        console.error("An error occurred while updating the patient details:", error);
+        return null;
+    }
+};
+
 // GET ALL NURSE
 export const getAllPatients = async () => {
     try {

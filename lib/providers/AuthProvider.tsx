@@ -16,7 +16,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Provider Component
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<{ userId: string; email: string; name: string } | null>(null);
+  const [user, setUser] = useState<{ userId: string; email: string; name: string, label: string } | null>(null);
   const router = useRouter();
 
   useEffect(() => {

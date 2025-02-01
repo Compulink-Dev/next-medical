@@ -2,10 +2,9 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Clinic } from "@/types/appwrite.types";
-import ActionButtons from "@/app/(admin)/_components/ActionButtons";
-import EditClinicModal from "@/components/modals/edit/EditClinicModal";
 import { Button } from "@/components/ui/button";
-import { Pen } from "lucide-react";
+import { Eye } from "lucide-react";
+import ViewClinicModal from "@/components/modals/ViewClinicModal";
 
 
 export const columns: ColumnDef<Clinic>[] = [
@@ -21,8 +20,8 @@ export const columns: ColumnDef<Clinic>[] = [
     header: "Name",
     meta: { width: "450px" },
     cell: ({ row }) => {
-      const patient = row.original;
-      return <p className="text-14-medium ">{patient.name}</p>;
+      const clinic = row.original;
+      return <p className="text-14-medium ">{clinic.name}</p>;
     },
   },
   {
@@ -30,8 +29,8 @@ export const columns: ColumnDef<Clinic>[] = [
     header: "Email",
     meta: { width: "450px" },
     cell: ({ row }) => {
-      const patient = row.original;
-      return <p className="text-14-medium ">{patient.email}</p>;
+      const clinic = row.original;
+      return <p className="text-14-medium ">{clinic.email}</p>;
     },
   },
   {
@@ -40,8 +39,8 @@ export const columns: ColumnDef<Clinic>[] = [
     meta: { width: "450px" },
 
     cell: ({ row }) => {
-      const patient = row.original;
-      return <p className="text-14-medium ">{patient.address}</p>;
+      const clinic = row.original;
+      return <p className="text-14-medium ">{clinic.address}</p>;
     },
   },
   {
@@ -50,8 +49,8 @@ export const columns: ColumnDef<Clinic>[] = [
     meta: { width: "450px" },
 
     cell: ({ row }) => {
-      const patient = row.original;
-      return <p className="text-14-medium ">{patient.phone}</p>;
+      const clinic = row.original;
+      return <p className="text-14-medium ">{clinic.phone}</p>;
     },
   },
   {
@@ -59,17 +58,15 @@ export const columns: ColumnDef<Clinic>[] = [
     header: () => <div className="pl-4">Actions</div>,
     cell: ({ row }) => {
 
-      const patient = row.original;
+      const clinic = row.original;
       return (
 
-        <ActionButtons clinicId={patient.$id} >
-          <EditClinicModal defaultValues={patient} clinicId={patient.$id}>
-            <Button variant={'outline'} className="border-slate-400 hover:bg-slate-500">
-              <Pen size={10} />
-              <p className="text-xs">Edit</p>
-            </Button>
-          </EditClinicModal>
-        </ActionButtons>
+        <ViewClinicModal defaultValues={clinic} clinicId={clinic.$id}>
+          <Button variant={'outline'}>
+            <Eye />
+            <p className="">View</p>
+          </Button>
+        </ViewClinicModal>
       );
     },
   },

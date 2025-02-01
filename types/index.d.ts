@@ -28,9 +28,14 @@ declare interface CreateClinicParams {
 
 declare interface CreateMedicineParams {
   name: string;
-  description: string;
+  category: string;
   dosage: string;
-  stock: string
+  stock: string;
+  frequency: string;
+  price: string;
+  unit: string
+  expiryDate: Date;
+  status: string
 }
 
 declare interface RegisterPatientParams extends CreateUserParams {
@@ -76,7 +81,6 @@ declare interface RegisterNurseParams extends CreateUserParams {
 }
 
 declare type CreateAppointmentParams = {
-  userId: string;
   patient: string;
   primaryClinic: string;
   reason: string;
@@ -87,7 +91,6 @@ declare type CreateAppointmentParams = {
 
 declare type UpdateAppointmentParams = {
   appointmentId: string;
-  userId: string;
   timeZone: string;
   appointment: Appointment;
   type: string;

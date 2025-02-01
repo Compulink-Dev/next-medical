@@ -56,7 +56,7 @@ const Services = () => {
                     {cards.map((card) => (
                         <div
                             key={card.id}
-                            className={`w-full p-4 rounded cursor-pointer ${activeCard === card.id ? 'bg-dark-400 text-white' : 'rounded shadow-xl'
+                            className={`w-full p-4 rounded cursor-pointer ${activeCard === card.id ? 'bg-dark-500 text-white' : 'rounded shadow-xl text-dark-500'
                                 }`}
                             //@ts-ignore
                             onClick={() => setActiveCard(card.id)}
@@ -71,7 +71,7 @@ const Services = () => {
                         {cards.map((card) => (
                             <div key={card.id}>
                                 {activeCard === card.id && (
-                                    <div className="flex items-center shadow-lg rounded-lg p-6 border border-dashed border-dark-400">
+                                    <div className="flex items-center shadow-lg rounded-lg p-6 border border-dashed border-dark-600">
                                         <Image width={100} height={100} className="w-24 h-24 mr-4" src={card.image} alt={card.title} />
                                         <div>
                                             <h4 className="text-lg font-bold mb-2">{card.title}</h4>

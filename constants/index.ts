@@ -1,6 +1,7 @@
 export const GenderOptions = ["Male", "Female", "Other"];
 
 export const PatientFormDefaultValues = {
+  $id: "", // Ensure ID exists
   firstName: "",
   lastName: "",
   email: "",
@@ -62,6 +63,13 @@ export const IdentificationTypes = [
   "Passport",
   "Student ID Card",
   "Voter ID Card",
+];
+
+export const Status = [
+  "In Stock",
+  "Out Stock",
+  "Low Stock",
+  "Expired",
 ];
 
 export const Doctors = [

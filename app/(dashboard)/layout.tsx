@@ -11,7 +11,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <AuthProvider>
       <Header />
-      {children}
+      <main className="text-dark-400">
+        {children}
+      </main>
     </AuthProvider>
   );
 }

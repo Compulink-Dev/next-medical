@@ -53,9 +53,9 @@ export const LoginForm = () => {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleLogin)} className="flex-1 space-y-6">
+            <form onSubmit={form.handleSubmit(handleLogin)} className="flex-1 space-y-6 text-gray-600">
                 <h1 className="text-xl font-bold">Login to your account</h1>
-                <p className="text-gray-600">Access your dashboard now.</p>
+                <p className="">Access your dashboard now.</p>
 
                 <CustomFormField
                     fieldType={FormFieldType.INPUT}

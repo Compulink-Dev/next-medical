@@ -14,6 +14,8 @@ import "react-phone-number-input/style.css";
 import CustomFormField, { FormFieldType } from "@/components/CustomFormField";
 import SubmitButton from "@/components/SubmitButton";
 
+
+
 export const RegisterForm = () => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);

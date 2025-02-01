@@ -8,7 +8,7 @@ import Loading from "@/components/Loading";
 
 
 const Dashboard = () => {
-  const [user, setUser] = useState<{ userId: string; email: string; name: string } | null>(null);
+  const [user, setUser] = useState<{ userId: string; email: string; name: string; label: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -41,12 +41,14 @@ const Dashboard = () => {
   if (loading) return <Loading />;
 
   return (
-    <div className="container my-8">
+    <div className="container my-8 text-dark-400">
       <h1>Welcome to the Dashboard</h1>
       {user && (
         <div>
           <h2>Hello, {user.name}</h2>
           <p>Email: {user.email}</p>
+          <p>Label: {user.label}</p>
+          <p>ID: {user.userId}</p>
         </div>
       )}
     </div>

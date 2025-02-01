@@ -29,7 +29,6 @@ function Testimonials() {
                     <div className="container mx-auto px-4">
 
                         <Title
-                            textColor='text-gray-800'
                             title='What people say?'
                             subtitle='Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'
                         />

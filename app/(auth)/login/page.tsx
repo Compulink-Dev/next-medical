@@ -32,7 +32,7 @@ const LoginPage = () => {
                     </div>
 
                     <div className="text-14-regular mt-12 flex justify-between items-center">
-                        <p className="justify-items-end text-600 text-color xl:text-left">
+                        <p className="justify-items-end text-dark-400  xl:text-left">
                             © 2025 Health Care
                         </p>
                         <Button className="shad-primary-btn">

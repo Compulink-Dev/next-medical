@@ -27,7 +27,7 @@ function Header() {
 
     return (
         <div className="mx-auto flex max-w-7xl flex-col space-y-14 pt-8">
-            <header className="admin-header">
+            <header className="admin-header ">
                 <Link href="/admin" className="cursor-pointer">
                     <Image
                         src="/assets/icons/healthcare_logo.png"
@@ -45,7 +45,7 @@ function Header() {
                                 <Link href={'/admin/patients'} className="cursor-pointer">
                                     <Users
                                         className={
-                                            isActive('/admin/patients') ? 'text-white' : 'text-slate-900'
+                                            isActive('/admin/patients') ? 'text-slate-900' : 'text-slate-300'
                                         }
                                         size={20}
                                     />
@@ -64,8 +64,7 @@ function Header() {
                                     <CalendarCheck
                                         className={
                                             isActive('/admin/appointments')
-                                                ? 'text-white'
-                                                : 'text-slate-900'
+                                                ? 'text-slate-900' : 'text-slate-300'
                                         }
                                         size={20}
                                     />
@@ -83,7 +82,7 @@ function Header() {
                                 <Link href={'/admin/health'} className="cursor-pointer">
                                     <Activity
                                         className={
-                                            isActive('/admin/health') ? 'text-white' : 'text-slate-900'
+                                            isActive('/admin/health') ? 'text-slate-900' : 'text-slate-300'
                                         }
                                         size={20}
                                     />
@@ -101,7 +100,7 @@ function Header() {
                                 <Link href={'/admin/medicines'} className="cursor-pointer">
                                     <Pill
                                         className={
-                                            isActive('/admin/medicines') ? 'text-white' : 'text-slate-900'
+                                            isActive('/admin/medicines') ? 'text-slate-900' : 'text-slate-300'
                                         }
                                         size={20}
                                     />
@@ -119,7 +118,7 @@ function Header() {
                                 <Link href={'/admin/reports'} className="cursor-pointer">
                                     <ClipboardPlus
                                         className={
-                                            isActive('/admin/reports') ? 'text-white' : 'text-slate-900'
+                                            isActive('/admin/reports') ? 'text-slate-900' : 'text-slate-300'
                                         }
                                         size={20}
                                     />
@@ -137,7 +136,7 @@ function Header() {
                                 <Link href={'/admin/clinics'} className="cursor-pointer">
                                     <Hospital
                                         className={
-                                            isActive('/admin/clinics') ? 'text-white' : 'text-slate-900'
+                                            isActive('/admin/clinics') ? 'text-slate-900' : 'text-slate-300'
                                         }
                                         size={20}
                                     />

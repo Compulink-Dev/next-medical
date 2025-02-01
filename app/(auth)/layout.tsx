@@ -17,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <div>
-      {children}
+      <main className="text-dark-400">
+        {children}
+      </main>
     </div>
   );
 }

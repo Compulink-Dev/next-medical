@@ -30,7 +30,15 @@ export async function getSession(userId: string) {
         const user = await users.get(userId);
         console.log("Session User:", user);
 
-        return { userId: user.$id, email: user.email, name: user.name };
+        // If 'label' is an array, take the first element or a default value if the array is empty
+        const label = Array.isArray(user.labels) ? user.labels[0] : user.labels || "No label";
+
+        return {
+            userId: user.$id,
+            email: user.email,
+            name: user.name,
+            label, // Ensure label is a string, not an array
+        };
     } catch (error: any) {
         console.error("Session error:", error.message);
         throw new Error(error.message || "Failed to fetch session");

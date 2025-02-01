@@ -1,7 +1,11 @@
+//@ts-nocheck
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Patient } from "@/types/appwrite.types";
+import PatientModal from "@/components/modals/PatientModal";
+import { Pen } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 
 
@@ -134,6 +138,7 @@ export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "pastMedicalHistory",
     header: "Past Medical History",
+    meta: { width: "40%" },
     cell: ({ row }) => {
       const patient = row.original;
       return <p className="text-14-medium ">{patient.pastMedicalHistory || 'No medical history'}</p>;
@@ -142,22 +147,44 @@ export const columns: ColumnDef<Patient>[] = [
   {
     accessorKey: "identificationType",
     header: "Identification Type",
-    meta: { width: "450px" },
+    meta: { width: "20%" },
 
     cell: ({ row }) => {
       const patient = row.original;
       return <p className="text-14-medium ">{patient.identificationType}</p>;
     },
   },
+  {
+    accessorKey: "status",
+    header: "Status",
+    meta: { width: "450px" },
 
+    cell: ({ row }) => {
+      const patient = row.original;
+      return <p className="text-14-medium ">{patient.status}</p>;
+    },
+  },
   {
     id: "actions",
     header: () => <div className="pl-4">Actions</div>,
-    cell: () => {
+    cell: ({ row }) => {
+      const patient = row.original;
 
+      const patientWithDefaults = {
+        ...patient,
+        treatmentConsent: patient.treatmentConsent ?? false,
+        disclosureConsent: patient.disclosureConsent ?? false
+      };
 
       return (
-        <div className=""></div>
+        <div className="">
+          <PatientModal defaultValues={patientWithDefaults}>
+            <Button variant="outline" className="">
+              <Pen />
+              <p className="">Edit</p>
+            </Button>
+          </PatientModal>
+        </div>
       );
     },
   },

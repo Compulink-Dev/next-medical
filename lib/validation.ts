@@ -23,6 +23,7 @@ export const LoginFormValidation = z.object({
 
 
 export const PatientFormValidation = z.object({
+  $id: z.string().optional(), // Allow optional ID
   name: z
     .string()
     .min(2, "Name must be at least 2 characters")
@@ -172,9 +173,14 @@ export const UserMedicineValidation = z.object({
     .string()
     .min(2, "Name must be at least 2 characters")
     .max(50, "Name must be at most 50 characters"),
+  category: z.string().min(1, "Invalid medicine stock quantity").optional(),
   stock: z.string().min(1, "Invalid medicine stock quantity").optional(),
-  description: z.string().min(2, "Invalid medicine description").optional(),
   dosage: z.string().min(2, "Invalid medicine dosage").optional(),
+  unit: z.string().min(1, "Invalid medicine stock unit").optional(),
+  frequency: z.string().min(2, "Invalid medicine frequency").optional(),
+  price: z.string().min(1, "Invalid medicine stock price").optional(),
+  expiryDate: z.coerce.date(),
+  status: z.string().min(1, "Invalid medicine stock quantity").optional(),
 });
 
 export const CreateAppointmentSchema = z.object({

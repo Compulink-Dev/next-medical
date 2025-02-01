@@ -46,7 +46,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="text-gray-300 py-4 mt-4">
+            <div className="text-dark-400 py-4 mt-4">
                 <div className="max-w-7xl mx-auto px-4 flex justify-between">
                     <div className="">Copyright 2025. Design by Techtrain</div>
                     <div className=""><i className="fas fa-angle-up"></i></div>

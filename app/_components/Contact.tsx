@@ -73,7 +73,9 @@ const ContactSection = () => {
                             <CustomFormField fieldType={FormFieldType.INPUT} control={form.control} name="email" label="Email Address" placeholder="example@gmail.com" />
                             <CustomFormField fieldType={FormFieldType.INPUT} control={form.control} name="subject" label="Subject" placeholder="Write subject" />
                             <CustomFormField fieldType={FormFieldType.PHONE_INPUT} control={form.control} name="phone" label="Phone" placeholder="+00 376 12 465" />
-                            <CustomFormField fieldType={FormFieldType.TEXTAREA} control={form.control} name="message" label="Your Message" placeholder="Write something here..." />
+                            <div className="sm:col-span-2 w-ful">
+                                <CustomFormField fieldType={FormFieldType.TEXTAREA} control={form.control} name="message" label="Your Message" placeholder="Write something here..." />
+                            </div>
                             <div className="sm:col-span-2 w-full">
                                 <SubmitButton isLoading={isLoading} className="shad-primary-btn w-full">Send Message</SubmitButton>
                             </div>

@@ -34,7 +34,18 @@ export const createMedicine = async (
 // In medicine.actions.ts
 export const updateMedicine = async (
     medicineId: string,
-    medicineData: { name: string; dosage: string; description: string; stock: string; }
+    medicineData:
+        {
+            name: string;
+            category: string;
+            stock: string;
+            dosage: string;
+            unit: string;
+            frequency: string;
+            price: string;
+            expiryDate: Date;
+            status: string;
+        }
 ) => {
     try {
         const updatedMedicine = await databases.updateDocument(

@@ -17,6 +17,8 @@ import { UserMedicineValidation } from '@/lib/validation';
 import { revalidatePath } from 'next/cache';
 import { updateMedicine } from '@/lib/actions/medicine.action';
 import { Medicine } from '@/types/appwrite.types';
+import { Status } from '@/constants';
+import { SelectItem } from '@/components/ui/select';
 
 interface EditMedicineModalProps {
     defaultValues: Medicine; // Expect defaultValues always present for updating
@@ -32,9 +34,13 @@ function EditMedicineModal({ children, defaultValues, medicineId }: EditMedicine
         resolver: zodResolver(UserMedicineValidation),
         defaultValues: {
             name: "",
-            description: "",
-            dosage: "",
+            category: "",
             stock: "",
+            dosage: "",
+            frequency: "",
+            price: "",
+            expiryDate: new Date(),
+            status: "",
         },
     });
 
@@ -51,14 +57,30 @@ function EditMedicineModal({ children, defaultValues, medicineId }: EditMedicine
         console.log('Submitting medicine data:', values); // Check form values
         console.log('Medicine ID:', medicineId); // Check clinic ID
 
+        const currentDate = new Date();
+        const selectedExpiryDate = new Date(values.expiryDate);
+        const stock = values.stock?.toString() || "0"; // Ensure stock is a string
+
+        // Determine status based on expiry date and stock level
+        let status = values.status!;
+        if (selectedExpiryDate < currentDate) {
+            status = "Expired"; // Expired takes priority
+        } else if (parseInt(stock) < 10) {
+            status = "Low Stock"; // If not expired but stock is low
+        }
+
         try {
             const medicine = {
                 name: values.name,
                 dosage: values.dosage!,
-                description: values.description!,
-                stock: values.stock!,
+                frequency: values.frequency!,
+                stock,
+                category: values.category!,
+                unit: values.unit!,
+                price: values.price!,
+                expiryDate: values.expiryDate!,
+                status,
             };
-
             if (medicineId) {
                 const updatedMedicine = await updateMedicine(medicineId, medicine);
 
@@ -88,9 +110,18 @@ function EditMedicineModal({ children, defaultValues, medicineId }: EditMedicine
                                 control={form.control}
                                 name="name"
                                 label="Medicine name"
-                                placeholder="Enter clinic name"
+                                placeholder="Enter medicine name"
                                 iconSrc="/assets/icons/user.svg"
                                 iconAlt="user"
+                            />
+                            <CustomFormField
+                                fieldType={FormFieldType.INPUT}
+                                control={form.control}
+                                name="category"
+                                label="Medicine category"
+                                placeholder="Enter medicine category"
+                                iconSrc="/assets/icons/user.svg"
+                                iconAlt="category"
                             />
                             <CustomFormField
                                 fieldType={FormFieldType.INPUT}
@@ -102,7 +133,7 @@ function EditMedicineModal({ children, defaultValues, medicineId }: EditMedicine
                                 iconAlt="stock"
                             />
                             <CustomFormField
-                                fieldType={FormFieldType.TEXTAREA}
+                                fieldType={FormFieldType.INPUT}
                                 control={form.control}
                                 name="dosage"
                                 label="Medicine dosage"
@@ -113,12 +144,49 @@ function EditMedicineModal({ children, defaultValues, medicineId }: EditMedicine
                             <CustomFormField
                                 fieldType={FormFieldType.INPUT}
                                 control={form.control}
-                                name="description"
-                                label="Medicine description"
-                                placeholder="Enter medicine description"
+                                name="unit"
+                                label="Medicine unit"
+                                placeholder="Enter medicine unit"
                                 iconSrc="/assets/icons/user.svg"
-                                iconAlt="description"
+                                iconAlt="unit"
                             />
+                            <CustomFormField
+                                fieldType={FormFieldType.INPUT}
+                                control={form.control}
+                                name="frequency"
+                                label="Medicine frequency"
+                                placeholder="Enter medicine frequency"
+                                iconSrc="/assets/icons/user.svg"
+                                iconAlt="frequency"
+                            />
+                            <CustomFormField
+                                fieldType={FormFieldType.INPUT}
+                                control={form.control}
+                                name="price"
+                                label="Medicine price"
+                                placeholder="Enter medicine price"
+                                iconSrc="/assets/icons/user.svg"
+                                iconAlt="price"
+                            />
+                            <CustomFormField
+                                fieldType={FormFieldType.DATE_PICKER}
+                                control={form.control}
+                                name="expiryDate"
+                                label="Medicine expiry date"
+                            />
+                            <CustomFormField
+                                fieldType={FormFieldType.SELECT}
+                                control={form.control}
+                                name="status"
+                                label="Medicine status"
+                                placeholder="Select status type"
+                            >
+                                {Status.map((type, i) => (
+                                    <SelectItem key={type + i} value={type}>
+                                        {type}
+                                    </SelectItem>
+                                ))}
+                            </CustomFormField>
                             <SubmitButton isLoading={isLoading}>Update Medicine</SubmitButton>
                         </form>
                     </Form>

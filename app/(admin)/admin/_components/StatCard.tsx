@@ -12,7 +12,7 @@ type StatCardProps = {
 export const StatCard = ({ count = 0, label, icon, href }: StatCardProps) => {
     return (
         <Link href={href}
-            className={clsx("stat-card bg-pending",)}
+            className={clsx("stat-card bg-pending border",)}
         >
             <div className="flex items-center gap-4">
                 <Image
@@ -22,7 +22,7 @@ export const StatCard = ({ count = 0, label, icon, href }: StatCardProps) => {
                     alt="appointments"
                     className="size-8 w-fit"
                 />
-                <h2 className="text-32-bold text-white">{count}</h2>
+                <h2 className="text-32-bold text-color">{count}</h2>
             </div>
 
             <p className="text-14-regular">{label}</p>
