@@ -1,12 +1,13 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { Doctors } from "@/constants";
 import { formatDateTime } from "@/lib/utils";
 import { Appointment } from "@/types/appwrite.types";
-import { Hospital } from "lucide-react";
+import { Eye, Hospital } from "lucide-react";
 import { StatusBadge } from "@/components/StatusBadge";
 import { AppointmentModal } from "@/components/AppointmentModal";
+import ViewAppointmentModal from "@/components/modals/ViewAppointmentModal";
+import { Button } from "@/components/ui/button";
 
 export const columns = (userRole: string): ColumnDef<Appointment>[] => [
   {
@@ -53,14 +54,10 @@ export const columns = (userRole: string): ColumnDef<Appointment>[] => [
     cell: ({ row }) => {
       const appointment = row.original;
 
-      const doctor = Doctors.find(
-        (doctor) => doctor.name === appointment.primaryClinic
-      );
-
       return (
         <div className="flex items-center gap-3">
           <Hospital />
-          <p className="whitespace-nowrap">Dr. {doctor?.name}</p>
+          <p className="whitespace-nowrap">{appointment.primaryClinic}</p>
         </div>
       );
     },
@@ -104,14 +101,15 @@ export const columns = (userRole: string): ColumnDef<Appointment>[] => [
           const appointment = row.original;
           return (
             <div className="flex gap-1">
-              <AppointmentModal
-                patientId={appointment.patient.$id}
-                userId={appointment.userId}
-                appointment={appointment}
-                type="schedule"
-                title="View Appointment"
-                description="View appointment details."
-              />
+              <ViewAppointmentModal
+                defaultValues={appointment}
+                patientId={appointment.id}
+              >
+                <Button>
+                  <Eye />
+                  <p className="">View</p>
+                </Button>
+              </ViewAppointmentModal>
             </div>
           );
         },

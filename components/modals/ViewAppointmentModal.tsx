@@ -10,32 +10,32 @@ import {
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserClinicValidation } from '@/lib/validation';
-import { Clinic } from '@/types/appwrite.types';
-import { Hospital, LocateIcon, Mail, Phone } from 'lucide-react';
+import { ScheduleAppointmentSchema } from '@/lib/validation';
+import { Appointment } from '@/types/appwrite.types';
+import { Clock, Hospital, Hourglass, User } from 'lucide-react';
+import { formatDateTime } from '@/lib/utils';
 
-interface EditClinicModalProps {
-    defaultValues: Clinic; // Expect defaultValues always present for updating
+interface ViewModalProps {
+    defaultValues: Appointment; // Expect defaultValues always present for updating
     children: React.ReactNode;
-    clinicId: string;
+    patientId: string;
 }
 
-function ViewClinicModal({ children, defaultValues }: EditClinicModalProps) {
+function ViewAppointmentModal({ children, defaultValues }: ViewModalProps) {
     const [isDialogOpen, setIsDialogOpen] = useState(false); // Manage dialog state
 
-    const form = useForm<z.infer<typeof UserClinicValidation>>({
-        resolver: zodResolver(UserClinicValidation),
-        defaultValues: defaultValues || {
-            name: "",
-            email: "",
-            phone: "",
-            address: "",
-        }, // Set defaultValues for clinic, used only in update scenario
+    const form = useForm<z.infer<typeof ScheduleAppointmentSchema>>({
+        resolver: zodResolver(ScheduleAppointmentSchema),
+        defaultValues: {
+            ...defaultValues,
+            cancellationReason: defaultValues.cancellationReason ?? undefined, // Convert null to undefined
+        },
     });
 
     // Sync defaultValues when they change
     useEffect(() => {
         if (defaultValues) {
+            //@ts-ignore
             form.reset(defaultValues);
         }
     }, [defaultValues, form]);
@@ -49,20 +49,20 @@ function ViewClinicModal({ children, defaultValues }: EditClinicModalProps) {
                     <DialogTitle>View Clinic</DialogTitle>
                     <div className="py-6 flex flex-col gap-6">
                         <div className="flex items-center gap-2">
+                            <User size={16} />
+                            <p className="">{defaultValues.patient.name}</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Hourglass size={16} />
+                            <p className="capitalize">{defaultValues.status}</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Clock size={16} />
+                            <p className="">{`${formatDateTime(defaultValues.schedule).dateTime}`}</p>
+                        </div>
+                        <div className="flex items-center gap-2">
                             <Hospital size={16} />
-                            <p className="">{defaultValues.name}</p>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Mail size={16} />
-                            <p className="">{defaultValues.email}</p>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <LocateIcon size={16} />
-                            <p className="">{defaultValues.address}</p>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Phone size={16} />
-                            <p className="">{defaultValues.phone}</p>
+                            <p className="">{defaultValues.primaryClinic}</p>
                         </div>
                     </div>
                 </DialogHeader>
@@ -71,4 +71,4 @@ function ViewClinicModal({ children, defaultValues }: EditClinicModalProps) {
     );
 }
 
-export default ViewClinicModal;
+export default ViewAppointmentModal;
