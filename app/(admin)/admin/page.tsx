@@ -1,17 +1,17 @@
 import React from "react";
 import { getRecentClinicList } from "@/lib/actions/clinic.actions";
 import { StatCard } from "./_components/StatCard";
-import { getRecentNursesList, getRecentPatientsList } from "@/lib/actions/user.actions";
+import {
+  getRecentNursesList,
+  getRecentPatientsList,
+} from "@/lib/actions/user.actions";
 import { getRecentMedicineList } from "@/lib/actions/medicine.action";
 
 const AdminPage = async () => {
   const clinics = await getRecentClinicList();
-  const patients = await getRecentPatientsList()
-  const nurses = await getRecentNursesList()
-  const medicines = await getRecentMedicineList()
-
-  console.log('Nurses:', nurses);
-
+  const patients = await getRecentPatientsList();
+  const nurses = await getRecentNursesList();
+  const medicines = await getRecentMedicineList();
 
   return (
     <div className="mx-auto flex max-w-7xl flex-col space-y-14">

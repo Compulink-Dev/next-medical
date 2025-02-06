@@ -1,39 +1,45 @@
 "use client";
-import { AppointmentModal } from "@/components/modals/NewAppointmentModal";
-import { StatCard } from "@/components/StatCard";
-import { getPatient } from "@/lib/actions/user.actions";
+// import { StatCard } from "@/components/StatCard";
+import { getAllPatients, getNurse } from "@/lib/actions/user.actions";
 import { useAuth } from "@/lib/providers/AuthProvider";
-import { useEffect, useState } from "react";
-import { DataTable } from "../dashboard/appointments/_components/table/DataTable";
-import { columns } from "../dashboard/appointments/_components/table/columns";
+import React, { useEffect, useState } from "react";
+import { columns } from "../table/columns";
+import { DataTable } from "@/components/table/DataTable";
+import { TreatmentModal } from "./TreatmentModal";
+import { Nurse } from "@/types/appwrite.types";
 
-interface Patient {
-  $id: string;
-  name?: string;
-  email?: string;
-  // Add other fields if necessary
-}
+function TreatmentClient({ treatments, nurses, patients, medicines }: any) {
+  const { user } = useAuth();
+  const [patient, setPatient] = useState<any | []>([]);
+  const [maid, setMaid] = useState<Nurse | null>(null);
 
-const AdminPageClient = ({
-  appointments,
-  clinics,
-}: {
-  appointments: any;
-  clinics: any;
-}) => {
-  const { user } = useAuth(); // This works only in the client-side
-  const [patient, setPatient] = useState<Patient | null>(null);
+  console.log(maid);
 
-  const userId = user?.userId ?? ""; // Use optional chaining with nullish coalescing
+  const userId = user?.userId ?? "";
+  console.log("User ID :", userId);
+
   //@ts-ignore
-  const userRole = user?.label ?? ""; // Assuming `label` stores the role
+  const userRole = user?.label ?? "";
 
   useEffect(() => {
     if (!userId) return;
 
+    const fetchNurse = async () => {
+      try {
+        const data = await getNurse(userId);
+        setMaid(data);
+      } catch (error) {
+        console.error("Failed to fetch nurse data:", error);
+      }
+    };
+
+    fetchNurse();
+  }, [userId]);
+
+  useEffect(() => {
     const fetchPatient = async () => {
       try {
-        const data = await getPatient(userId);
+        const data = await getAllPatients();
         setPatient(data);
       } catch (error) {
         console.error("Failed to fetch patient data:", error);
@@ -43,41 +49,54 @@ const AdminPageClient = ({
     fetchPatient();
   }, [userId]);
 
-  // Filter appointments if user is NOT a doctor or nurse
-  const filteredAppointments =
+  // Find the nurse by userId
+  const nurse = nurses.find((n: any) => n.userId === userId);
+  console.log("Found Nurse:", nurse);
+
+  // Extract clinic name if nurse exists
+  const clinicName = nurse?.clinic?.name ?? "Unknown Clinic";
+  console.log("Clinic Name:", clinicName);
+
+  console.log("Treatments ", treatments);
+
+  console.log("Patient ", patient);
+
+  // 🔥 Filter Treatments based on User Role
+  const filteredTreatments =
     userRole === "doctor" || userRole === "nurse"
-      ? appointments.documents // Show all
-      : appointments.documents.filter(
-          (appointment: any) => appointment.patient.userId === userId
-        ); // Show only user's appointments
+      ? treatments.filter((t: any) => t.primaryClinic === clinicName) // Show treatments for clinic
+      : treatments.filter((t: any) => t.patient && t.patient.userId === userId); // Show only the user's treatments (if patient exists)
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col space-y-14">
+    <div className="mx-auto flex max-w-7xl flex-col space-y-14 mt-6">
       <main className="admin-main pt-6">
         <section className="w-full space-y-4 flex items-center justify-between">
           <div className="">
-            <h1 className="header">Appointments</h1>
-            <p className="text-dark-700">
+            <h1 className="header">Treatments</h1>
+            <p className="text-color">
               {userRole === "doctor" || userRole === "nurse"
-                ? "Manage all appointments"
-                : "View your appointments"}
+                ? `Manage all treatments at ${clinicName}`
+                : "View your treatments"}
             </p>
           </div>
-          {userRole === "doctor" || userRole === "nurse" ? null : (
-            <AppointmentModal
-              clinics={clinics}
+          {userRole === "doctor" || userRole === "nurse" ? (
+            <TreatmentModal
+              userId={userId}
+              medicines={medicines}
+              patients={patients}
+              nurses={nurses}
               patientId={patient?.$id ?? ""}
             />
-          )}
+          ) : null}
         </section>
 
-        <section className="admin-stat">
+        {/* <section className="admin-stat">
           {userRole === "doctor" || userRole === "nurse" ? (
             // Doctors & nurses see all appointment statistics
             <>
               <StatCard
                 type="appointments"
-                count={appointments.scheduledCount}
+                count={treatments.scheduledCount}
                 label="Scheduled appointments"
                 icon={"/assets/icons/appointments.svg"}
               />
@@ -135,12 +154,12 @@ const AdminPageClient = ({
               />
             </>
           )}
-        </section>
+        </section> */}
 
-        <DataTable columns={columns(userRole)} data={filteredAppointments} />
+        <DataTable columns={columns(userRole)} data={filteredTreatments} />
       </main>
     </div>
   );
-};
+}
 
-export default AdminPageClient;
+export default TreatmentClient;

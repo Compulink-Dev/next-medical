@@ -26,7 +26,6 @@ export interface Patient extends Models.Document {
   disclosureConsent?: boolean;
 }
 
-
 export interface Nurse extends Models.Document {
   userId: string;
   name: string;
@@ -51,6 +50,18 @@ export interface Nurse extends Models.Document {
   privacyConsent: boolean;
 }
 
+export interface Treatment extends Models.Document {
+  patient: Patient;
+  startDate: Date;
+  endDate: Date;
+  status: Status;
+  description: string;
+  userId: string;
+  primaryClinic: string;
+  reason: string;
+  phone: string | undefined;
+}
+
 export interface Appointment extends Models.Document {
   patient: Patient;
   schedule: Date;
@@ -61,7 +72,6 @@ export interface Appointment extends Models.Document {
   userId: string;
   cancellationReason?: string | null;
 }
-
 
 export interface Clinic extends Models.Document {
   name: string;

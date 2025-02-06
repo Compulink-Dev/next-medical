@@ -33,7 +33,6 @@ const RegisterForm = ({ user, clinics }: RegisterFormProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-
   const form = useForm<z.infer<typeof PatientFormValidation>>({
     resolver: zodResolver(PatientFormValidation),
     defaultValues: {
@@ -77,10 +76,10 @@ const RegisterForm = ({ user, clinics }: RegisterFormProps) => {
         primaryClinic: values.primaryClinic,
         insuranceProvider: values.insuranceProvider,
         insurancePolicyNumber: values.insurancePolicyNumber,
-        allergies: values.allergies || 'No allergies',
+        allergies: values.allergies || "No allergies",
         currentMedication: values.currentMedication || "N/A",
-        familyMedicalHistory: values.familyMedicalHistory || 'N/A',
-        pastMedicalHistory: values.pastMedicalHistory || 'N/A',
+        familyMedicalHistory: values.familyMedicalHistory || "N/A",
+        pastMedicalHistory: values.pastMedicalHistory || "N/A",
         identificationType: values.identificationType,
         identificationNumber: values.identificationNumber,
         identificationDocument: values.identificationDocument

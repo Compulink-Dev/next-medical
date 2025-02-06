@@ -1,6 +1,6 @@
 import { E164Number } from "libphonenumber-js/core";
 import Image from "next/image";
-import 'react-phone-number-input/style.css'
+import "react-phone-number-input/style.css";
 import ReactDatePicker from "react-datepicker";
 import { Control } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
@@ -25,7 +25,7 @@ export enum FormFieldType {
   DATE_PICKER = "datePicker",
   SELECT = "select",
   SKELETON = "skeleton",
-  PASSWORD = 'password',
+  PASSWORD = "password",
 }
 
 interface CustomProps {
@@ -41,6 +41,7 @@ interface CustomProps {
   children?: React.ReactNode;
   renderSkeleton?: (field: any) => React.ReactNode;
   fieldType: FormFieldType;
+  onChange?: (e: any) => void; // Add this line to allow onChange as an optional prop
 }
 
 const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
@@ -153,7 +154,13 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
     case FormFieldType.SELECT:
       return (
         <FormControl>
-          <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <Select
+            onValueChange={(value) => {
+              field.onChange(value);
+              if (props.onChange) props.onChange(value); // Call onChange if provided
+            }}
+            defaultValue={field.value}
+          >
             <FormControl>
               <SelectTrigger className="shad-select-trigger">
                 <SelectValue placeholder={props.placeholder} />

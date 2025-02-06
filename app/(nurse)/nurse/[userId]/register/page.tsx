@@ -12,9 +12,6 @@ const Register = async ({ params }: SearchParamProps) => {
   const user = await getUser(userId);
   const nurse = await getNurse(userId);
 
-  console.log('nurse', nurse);
-
-
   if (nurse) redirect(`/dashboard`);
 
   return (

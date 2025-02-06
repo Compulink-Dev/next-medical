@@ -28,14 +28,14 @@ export const AppointmentForm = ({
   type = "create",
   appointment,
   setOpen,
-  clinics
+  clinics,
 }: {
   userId: string;
   patientId: string;
   type: "create" | "schedule" | "cancel";
   appointment?: Appointment;
   setOpen?: Dispatch<SetStateAction<boolean>>;
-  clinics: Clinic[]
+  clinics: Clinic[];
 }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -103,7 +103,7 @@ export const AppointmentForm = ({
             cancellationReason: values.cancellationReason,
           },
           type,
-          timeZone: 'America/New_York', // Add this line
+          timeZone: "America/New_York", // Add this line
         };
 
         const updatedAppointment = await updateAppointment(appointmentToUpdate);
@@ -172,7 +172,9 @@ export const AppointmentForm = ({
             />
 
             <div
-              className={`flex flex-col gap-6  ${type === "create" && "xl:flex-row"}`}
+              className={`flex flex-col gap-6  ${
+                type === "create" && "xl:flex-row"
+              }`}
             >
               <CustomFormField
                 fieldType={FormFieldType.TEXTAREA}
@@ -207,7 +209,9 @@ export const AppointmentForm = ({
 
         <SubmitButton
           isLoading={isLoading}
-          className={`${type === "cancel" ? "shad-danger-btn" : "shad-primary-btn"} w-full`}
+          className={`${
+            type === "cancel" ? "shad-danger-btn" : "shad-primary-btn"
+          } w-full`}
         >
           {buttonLabel}
         </SubmitButton>

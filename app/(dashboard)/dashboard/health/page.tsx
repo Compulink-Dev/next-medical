@@ -1,18 +1,23 @@
-import React from 'react'
+import React from "react";
+import TreatmentClient from "./_components/TreatmentClient";
+import { getAllTreatments } from "@/lib/actions/treatment.actions";
+import { getAllNurses, getAllPatients } from "@/lib/actions/user.actions";
+import { getAllMedicines } from "@/lib/actions/medicine.action";
 
-function Health() {
-    return (
-        <div className='mx-auto flex max-w-7xl flex-col space-y-14 mt-6'>
-            <main className="admin-main pt-6">
-                <section className="w-full space-y-4">
-                    <h1 className="header">Health </h1>
-                    <p className="text-dark-700">
-                        Start the day with managing new appointments
-                    </p>
-                </section>
-            </main>
-        </div>
-    )
+async function Health() {
+  const treatments = await getAllTreatments();
+  const nurses = (await getAllNurses()) || [];
+  const patients = (await getAllPatients()) || [];
+  const medicines = (await getAllMedicines()) || [];
+
+  return (
+    <TreatmentClient
+      patients={patients}
+      medicines={medicines}
+      treatments={treatments}
+      nurses={nurses}
+    />
+  );
 }
 
-export default Health
+export default Health;

@@ -12,18 +12,17 @@ declare interface CreateUserParams {
   name: string;
   email: string;
   phone: string;
-  password: string
+  password: string;
 }
 declare interface User extends CreateUserParams {
   $id: string;
 }
 
-
 declare interface CreateClinicParams {
   name: string;
   email: string;
   phone: string;
-  address: string
+  address: string;
 }
 
 declare interface CreateMedicineParams {
@@ -33,9 +32,9 @@ declare interface CreateMedicineParams {
   stock: string;
   frequency: string;
   price: string;
-  unit: string
+  unit: string;
   expiryDate: Date;
-  status: string
+  status: string;
 }
 
 declare interface RegisterPatientParams extends CreateUserParams {
@@ -88,6 +87,18 @@ declare type CreateAppointmentParams = {
   status: Status;
   note: string | undefined;
 };
+
+declare interface CreateTreatmentParams {
+  patient: string;
+  primaryClinic: string;
+  primaryNurse: string;
+  dosage: string;
+  startDate: Date;
+  endDate: Date;
+  status: string;
+  phone: string;
+  description: string;
+}
 
 declare type UpdateAppointmentParams = {
   appointmentId: string;

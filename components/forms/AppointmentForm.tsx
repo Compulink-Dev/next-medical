@@ -101,7 +101,7 @@ export const AppointmentForm = ({
             cancellationReason: values.cancellationReason,
           },
           type,
-          timeZone: 'America/New_York', // Add this line
+          timeZone: "America/New_York", // Add this line
         };
 
         const updatedAppointment = await updateAppointment(appointmentToUpdate);
@@ -176,7 +176,9 @@ export const AppointmentForm = ({
             />
 
             <div
-              className={`flex flex-col gap-6  ${type === "create" && "xl:flex-row"}`}
+              className={`flex flex-col gap-6  ${
+                type === "create" && "xl:flex-row"
+              }`}
             >
               <CustomFormField
                 fieldType={FormFieldType.TEXTAREA}
@@ -211,7 +213,9 @@ export const AppointmentForm = ({
 
         <SubmitButton
           isLoading={isLoading}
-          className={`${type === "cancel" ? "shad-danger-btn" : "shad-primary-btn"} w-full`}
+          className={`${
+            type === "cancel" ? "shad-danger-btn" : "shad-primary-btn"
+          } w-full`}
         >
           {buttonLabel}
         </SubmitButton>
