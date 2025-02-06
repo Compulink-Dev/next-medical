@@ -69,8 +69,6 @@ export const TreatmentForm = ({
     }
   }, [selectedMedicine, form]);
 
-  console.log("Patients : ", patients);
-
   const onSubmit = async (values: z.infer<typeof TreatmentValidation>) => {
     setIsLoading(true);
 
