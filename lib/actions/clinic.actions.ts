@@ -19,6 +19,7 @@ export const createClinic = async (clinic: CreateClinicParams) => {
     );
 
     revalidatePath("/admin");
+    revalidatePath("/dashboard/clinics");
     return parseStringify(newClinic);
   } catch (error) {
     console.error("An error occurred while creating a new clinic:", error);
