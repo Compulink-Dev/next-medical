@@ -18,7 +18,7 @@ export const createTreatment = async (treatment: CreateTreatmentParams) => {
       treatment
     );
 
-    revalidatePath("/admin");
+    revalidatePath("/dashboard/health");
     return parseStringify(newTreatment);
   } catch (error) {
     console.error("An error occurred while creating a new treatment:", error);
