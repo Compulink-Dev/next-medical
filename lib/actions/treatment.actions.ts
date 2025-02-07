@@ -17,7 +17,7 @@ export const createTreatment = async (treatment: CreateTreatmentParams) => {
       ID.unique(),
       treatment
     );
-
+    revalidatePath("/admin");
     revalidatePath("/dashboard/health");
     return parseStringify(newTreatment);
   } catch (error) {
