@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { Medicine, Nurse, Patient, Treatment } from "@/types/appwrite.types";
 import "react-datepicker/dist/react-datepicker.css";
-
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -13,7 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { TreatmentForm } from "./TreatmentForm";
-import { Plus } from "lucide-react";
+import AddButton from "@/components/AddButton";
 
 export const TreatmentModal = ({
   patientId,
@@ -37,10 +35,7 @@ export const TreatmentModal = ({
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">
-          <Plus size={12} />
-          <p className="">Treatment</p>
-        </Button>
+        <AddButton name="Treatment" />
       </DialogTrigger>
 
       <DialogContent className="max-h-[90vh] overflow-y-auto p-4 bg-color">

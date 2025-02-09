@@ -26,7 +26,7 @@ const Selection = () => {
 
   return (
     <div className="flex flex-col gap-6 h-screen w-screen items-center justify-center">
-      <p className="text-3xl font-bold">Want to login as</p>
+      <p className="text-3xl font-bold text-color">Login as</p>
       <div className="flex items-center justify-center gap-4">
         <SelectCard name="Patient" userId={userIdString} type="patients">
           <Accessibility size={100} />

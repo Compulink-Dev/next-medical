@@ -13,16 +13,14 @@ const Register = async ({ params }: SearchParamProps) => {
   const { userId } = await params;
   const user = await getUser(userId);
   const patient = await getPatient(userId);
-  const clinics = await getAllClinics() || [];
+  const clinics = (await getAllClinics()) || [];
 
+  console.log("Clinic data:", clinics);
 
-  console.log('Clinic data:', clinics);
-
-
-  if (patient) redirect(`/patients/${userId}/new-appointment`);
+  if (patient) redirect(`/dashboard`);
 
   return (
-    <div className="flex h-screen max-h-screen">
+    <div className="flex h-screen max-h-screen bg-color">
       <section className="remove-scrollbar container">
         <div className="sub-container max-w-[860px] flex-1 flex-col py-10">
           <Image

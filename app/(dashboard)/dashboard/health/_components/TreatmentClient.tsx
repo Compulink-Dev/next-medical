@@ -57,10 +57,6 @@ function TreatmentClient({ treatments, nurses, patients, medicines }: any) {
   const clinicName = nurse?.clinic?.name ?? "Unknown Clinic";
   console.log("Clinic Name:", clinicName);
 
-  console.log("Treatments ", treatments);
-
-  console.log("Patient ", patient);
-
   // 🔥 Filter Treatments based on User Role
   const filteredTreatments =
     userRole === "doctor" || userRole === "nurse"

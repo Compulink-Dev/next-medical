@@ -81,7 +81,7 @@ export const AppointmentModal = ({
         <Button variant="outline">Submit Appointment</Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] scrollbar">
         <DialogHeader>
           <DialogTitle>Create an appointment to get started</DialogTitle>
         </DialogHeader>
@@ -90,13 +90,6 @@ export const AppointmentModal = ({
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex-1 space-y-6"
           >
-            <section className="mb-6 space-y-2">
-              <h1 className="header">New Appointment</h1>
-              <p className="text-dark-700">
-                Request a new appointment in 10 seconds.
-              </p>
-            </section>
-
             <CustomFormField
               fieldType={FormFieldType.SELECT}
               control={form.control}
@@ -123,23 +116,21 @@ export const AppointmentModal = ({
               dateFormat="MM/dd/yyyy  -  h:mm aa"
             />
 
-            <div className="flex flex-col gap-6 xl:flex-row">
-              <CustomFormField
-                fieldType={FormFieldType.TEXTAREA}
-                control={form.control}
-                name="reason"
-                label="Appointment reason"
-                placeholder="Annual monthly check-up"
-              />
+            <CustomFormField
+              fieldType={FormFieldType.TEXTAREA}
+              control={form.control}
+              name="reason"
+              label="Appointment reason"
+              placeholder="Annual monthly check-up"
+            />
 
-              <CustomFormField
-                fieldType={FormFieldType.TEXTAREA}
-                control={form.control}
-                name="note"
-                label="Comments/notes"
-                placeholder="Prefer afternoon appointments, if possible"
-              />
-            </div>
+            <CustomFormField
+              fieldType={FormFieldType.TEXTAREA}
+              control={form.control}
+              name="note"
+              label="Comments/notes"
+              placeholder="Prefer afternoon appointments, if possible"
+            />
 
             <SubmitButton
               isLoading={isLoading}
