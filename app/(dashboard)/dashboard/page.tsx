@@ -30,8 +30,6 @@ const Dashboard = () => {
 
   const router = useRouter();
 
-  console.log(user);
-
   useEffect(() => {
     const fetchUser = async () => {
       const userId = sessionStorage.getItem("userId");
@@ -84,33 +82,35 @@ const Dashboard = () => {
     <div className="container my-8 text-dark-400">
       <h1 className="text-2xl font-bold">Dashboard</h1>
 
-      {/* StatCards Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-8">
-        <StatCard
-          count={stats.patients}
-          label="Total Patients"
-          icon="/assets/icons/patient.svg"
-          href="/dashboard/patients"
-        />
-        <StatCard
-          count={stats.appointments}
-          label="Appointments"
-          icon="/assets/icons/appointments.svg"
-          href="/dashboard/appointments"
-        />
-        <StatCard
-          count={stats.treatments}
-          label="Treatments"
-          icon="/assets/icons/injection.svg"
-          href="/dashboard/treatments"
-        />
-        <StatCard
-          count={stats.medicines}
-          label="Medicines"
-          icon="/assets/icons/medicine.svg"
-          href="/dashboard/medicines"
-        />
-      </div>
+      {/* Render StatCards only for doctors and nurses */}
+      {(user?.label === "doctor" || user?.label === "nurse") && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-8">
+          <StatCard
+            count={stats.patients}
+            label="Total Patients"
+            icon="/assets/icons/patient.svg"
+            href="/dashboard/patients"
+          />
+          <StatCard
+            count={stats.appointments}
+            label="Appointments"
+            icon="/assets/icons/appointments.svg"
+            href="/dashboard/appointments"
+          />
+          <StatCard
+            count={stats.treatments}
+            label="Treatments"
+            icon="/assets/icons/injection.svg"
+            href="/dashboard/treatments"
+          />
+          <StatCard
+            count={stats.medicines}
+            label="Medicines"
+            icon="/assets/icons/medicine.svg"
+            href="/dashboard/medicines"
+          />
+        </div>
+      )}
 
       {/* Chart Section */}
       <div className="bg-white p-6 rounded-xl shadow-md">

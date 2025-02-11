@@ -198,7 +198,7 @@ function Header() {
             </Tooltip>
           </TooltipProvider>
 
-          {/* Conditionally render the Medicines Management link for nurse or doctor */}
+          {/* Conditionally render the Medicines Management link for nurse or doctor
           {!isHealthcareProvider && (
             <TooltipProvider>
               <Tooltip>
@@ -219,7 +219,7 @@ function Header() {
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
-          )}
+          )} */}
 
           {/* User Avatar */}
           {user && (
