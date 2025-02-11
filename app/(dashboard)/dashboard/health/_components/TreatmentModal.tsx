@@ -11,7 +11,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { TreatmentForm } from "./TreatmentForm";
-import AddButton from "@/components/AddButton";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 export const TreatmentModal = ({
   patientId,
@@ -35,7 +36,10 @@ export const TreatmentModal = ({
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <AddButton name="Treatment" />
+        <Button className="border-slate-600 border">
+          <Plus />
+          <p className="">Treatment</p>
+        </Button>
       </DialogTrigger>
 
       <DialogContent className="max-h-[90vh] overflow-y-auto p-4 bg-color">
